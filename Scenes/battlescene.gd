@@ -6,7 +6,14 @@ extends Control
 @onready var label_enemy_count = $HBoxContainer/LeftSide/LeftBottomPanel/VBoxContainer/EnemyCountLabel
 @onready var label_dark_mana = $HBoxContainer/RightSide/RightTopPanel/VBoxContainer/DarkManaLabel
 @onready var arena_box = $HBoxContainer/LeftSide/LeftTopPanel/HBoxContainer
+@onready var label_name_enemy = $HBoxContainer/LeftSide/LeftBottomPanel/VBoxContainer/EnemyNameLabel
 
+#boss isimlerini oluşturmak için gereken değişkenler:
+var boss_first_name = ["Abyssal","Umbral","Hollow","Cursed","Veiled","Crimson","Shattered","Relentless","Ironbound","Feral","Primordial","Forsaken","Ethereal","Arcane"]
+var boss_last_name = ["Wraith","Banshee","Specter","Revenant","Wendigo","Chimera","Manticore","Behemoth","Lich","Nephilim","Creep","Golem"]
+#sıradan enemyler için
+var basic_first_name = ["Mud","Lesser","Stray","Rusted","Rabid","Blind","Foul","Weak","Feral","Wild","Scavenger"]
+var basic_last_name = ["Slime","Imp","Goblin","Hound","Crawler","Bat","Skeleton","Bandit","Mite"]
 var original_arena_pos: Vector2
 var entity_scene = preload("res://Scenes/battleentity.tscn")
 var player_entity
@@ -23,9 +30,20 @@ func _ready() -> void:
 	setup_arena()
 	update_ui()
 	call_deferred("save_original_pos")
+	
+func generate_boss_enemy_name() -> String:
+	var f_name = boss_first_name.pick_random()
+	var l_name = boss_last_name.pick_random()
+	return f_name + " " + l_name
 
+func generate_basic_enemy_name() -> String:
+	var basic_f_name = basic_first_name.pick_random()
+	var basic_l_name = basic_last_name.pick_random()
+	return basic_f_name + " " + basic_l_name
+	
 func save_original_pos() -> void:
 	original_arena_pos = arena_box.position
+	
 func setup_arena() -> void:
 	player_entity = entity_scene.instantiate()
 	enemy_entity = entity_scene.instantiate()
@@ -43,6 +61,18 @@ func spawn_new_enemy() -> void:
 	enemy_entity.max_hp = 50 + (Globals.current_floor * 10.0)
 	enemy_entity.current_hp = enemy_entity.max_hp
 	enemy_entity.speed = 15.0 + (Globals.current_floor * 2)
+	enemy_entity.hp_bar.max_value = enemy_entity.max_hp
+	enemy_entity.hp_bar.value = enemy_entity.current_hp
+	enemy_entity.character_texture.flip_h = true
+	
+	if enemies_defeated == ENEMIES_PER_FLOOR - 1:
+		label_name_enemy.text = generate_boss_enemy_name()
+		enemy_entity.max_hp *= 5.0
+		enemy_entity.speed *= 1.2
+	else:
+		label_name_enemy.text = generate_basic_enemy_name()
+	
+	enemy_entity.current_hp = enemy_entity.max_hp
 	enemy_entity.hp_bar.max_value = enemy_entity.max_hp
 	enemy_entity.hp_bar.value = enemy_entity.current_hp
 	enemy_entity.character_texture.flip_h = true
