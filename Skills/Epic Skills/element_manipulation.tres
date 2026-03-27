@@ -4,4 +4,10 @@
 
 [resource]
 script = ExtResource("1_3xm7l")
+skill_name = "Element Manipulation"
+description = "This skill enhances your inner strength, outer strength and toughness by 1.5."
+rarity = 2
+inner_strength_mult = 1.5
+outer_strength_mult = 1.5
+toughness_mult = 1.5
 metadata/_custom_type_script = "uid://bfcnay3odbjv6"

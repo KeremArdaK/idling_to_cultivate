@@ -15,8 +15,6 @@ var enemy_entity
 var is_combat_paused : bool = false
 var atb_max: float = 100.0
 
-var total_dark_mana: int = 0
-var current_floor: int = 1
 var enemies_defeated: int = 0
 const ENEMIES_PER_FLOOR: int = 10
 var shake_strength : float = 0.0
@@ -42,9 +40,9 @@ func setup_arena() -> void:
 	spawn_new_enemy()
 
 func spawn_new_enemy() -> void:
-	enemy_entity.max_hp = 50 + (current_floor * 10.0)
+	enemy_entity.max_hp = 50 + (Globals.current_floor * 10.0)
 	enemy_entity.current_hp = enemy_entity.max_hp
-	enemy_entity.speed = 15.0 + (current_floor * 2)
+	enemy_entity.speed = 15.0 + (Globals.current_floor * 2)
 	enemy_entity.hp_bar.max_value = enemy_entity.max_hp
 	enemy_entity.hp_bar.value = enemy_entity.current_hp
 	enemy_entity.character_texture.flip_h = true
@@ -88,7 +86,7 @@ func execute_attack(attacker, defender, is_player:bool) -> void:
 	if defender.current_hp <= 0:
 		if defender == player_entity:
 			print("ÖLDÜN!")
-			current_floor = 1
+			Globals.current_floor = 1
 			enemies_defeated = 0
 			player_entity.current_hp = player_entity.max_hp
 			player_entity.hp_bar.value = player_entity.max_hp
@@ -97,13 +95,13 @@ func execute_attack(attacker, defender, is_player:bool) -> void:
 			print("DÜŞMAN ÖLDÜ!")
 			enemies_defeated += 1
 			var earned_mana = enemies_defeated + 1 
-			total_dark_mana += earned_mana
-			print("Toplam Kara Mana:", total_dark_mana, "| Kazanılan Mana:", earned_mana)
+			Globals.total_dark_mana += earned_mana
+			print("Toplam Kara Mana:", Globals.total_dark_mana, "| Kazanılan Mana:", earned_mana)
 			
 			if enemies_defeated > ENEMIES_PER_FLOOR:
-				current_floor += 1
+				Globals.current_floor += 1
 				enemies_defeated = 0
-				print("KATA HÜKMETTİN. Yeni Kat: ", current_floor)
+				print("KATA HÜKMETTİN. Yeni Kat: ", Globals.current_floor)
 			
 			spawn_new_enemy()
 			
@@ -114,6 +112,6 @@ func execute_attack(attacker, defender, is_player:bool) -> void:
 	is_combat_paused = false
 
 func update_ui() -> void:
-	label_dark_mana.text = "Dark Mana: " + str(total_dark_mana)
+	label_dark_mana.text = "Dark Mana: " + str(Globals.total_dark_mana)
 	label_enemy_count.text = "Enemy: " + str(enemies_defeated + 1) + "/" + str(ENEMIES_PER_FLOOR)
-	label_floor.text = "Floor: " + str(current_floor)
+	label_floor.text = "Floor: " + str(Globals.current_floor)

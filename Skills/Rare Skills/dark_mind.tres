@@ -5,5 +5,8 @@
 [resource]
 script = ExtResource("1_0543t")
 skill_name = "Dark Mind"
-description = "This skill enhances your dark mana gain by 1.20 and  "
+description = "This skill enhances your dark mana gain by 1.2 and  inner strength by 1.5"
+rarity = 1
+inner_strength_mult = 1.5
+dark_mana_gain_mult = 1.2
 metadata/_custom_type_script = "uid://bfcnay3odbjv6"

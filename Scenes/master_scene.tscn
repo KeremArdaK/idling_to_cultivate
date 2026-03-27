@@ -2,6 +2,12 @@
 
 [ext_resource type="PackedScene" uid="uid://bt1sw4td63udd" path="res://Scenes/battlescene.tscn" id="1_hytem"]
 
+[sub_resource type="Gradient" id="Gradient_hytem"]
+colors = PackedColorArray(0.1764706, 0, 0, 1, 0.1418224, 0.103072874, 0.2530087, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_gv00e"]
+gradient = SubResource("Gradient_hytem")
+
 [node name="MasterScene" type="Control" unique_id=987181421]
 layout_mode = 3
 anchors_preset = 15
@@ -79,6 +85,81 @@ size_flags_vertical = 3
 layout_mode = 2
 
 [node name="GachaScene" type="Control" parent="MainVBox/MarginContainer" unique_id=1230620265]
+visible = false
 layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="MainVBox/MarginContainer/GachaScene" unique_id=1597007662]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_gv00e")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainVBox/MarginContainer/GachaScene" unique_id=1688858355]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TitleLabel" type="Label" parent="MainVBox/MarginContainer/GachaScene/VBoxContainer" unique_id=185965243]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.25
+theme_override_font_sizes/font_size = 32
+text = "KARA SUNAĞA HOŞ GELDİN"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ManaLabel" type="Label" parent="MainVBox/MarginContainer/GachaScene/VBoxContainer" unique_id=1840530742]
+layout_mode = 2
+size_flags_vertical = 6
+size_flags_stretch_ratio = 0.5
+theme_override_font_sizes/font_size = 28
+text = "SAHİP OLDUĞUN MANA: 0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Btn_Roll" type="Button" parent="MainVBox/MarginContainer/GachaScene/VBoxContainer" unique_id=272196557]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+size_flags_stretch_ratio = 0.95
+theme_override_font_sizes/font_size = 32
+text = "BİR SKİLL ÇEVİRMEK İÇİN TIKLA"
+
+[node name="ResultPanel" type="PanelContainer" parent="MainVBox/MarginContainer/GachaScene/VBoxContainer" unique_id=501636576]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainVBox/MarginContainer/GachaScene/VBoxContainer/ResultPanel" unique_id=528629760]
+layout_mode = 2
+
+[node name="ResultName" type="Label" parent="MainVBox/MarginContainer/GachaScene/VBoxContainer/ResultPanel/VBoxContainer" unique_id=1660784129]
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_font_sizes/font_size = 28
+text = "Yetenek Adı"
+horizontal_alignment = 1
+uppercase = true
+
+[node name="ResultRarity" type="Label" parent="MainVBox/MarginContainer/GachaScene/VBoxContainer/ResultPanel/VBoxContainer" unique_id=1294535035]
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_font_sizes/font_size = 28
+text = "YetenekNadirliği"
+horizontal_alignment = 1
+uppercase = true
+
+[node name="ResultDesc" type="Label" parent="MainVBox/MarginContainer/GachaScene/VBoxContainer/ResultPanel/VBoxContainer" unique_id=2115566392]
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_font_sizes/font_size = 28
+text = "Yeteneğin İşlevi"
+horizontal_alignment = 1
+uppercase = true
 
 [editable path="MainVBox/MarginContainer/BattleScene"]
