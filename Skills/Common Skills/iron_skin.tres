@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="PassiveSkill" format=3 uid="uid://dw8sqij0c72ne"]
+
+[ext_resource type="Script" uid="uid://bfcnay3odbjv6" path="res://Skills/passive_skill.gd" id="1_r7m8s"]
+
+[resource]
+script = ExtResource("1_r7m8s")
+skill_name = "Iron Skin"
+description = "This skill enhances your toughness by 3."
+toughness_mult = 3.0
+metadata/_custom_type_script = "uid://bfcnay3odbjv6"

@@ -78,9 +78,6 @@ size_flags_vertical = 3
 [node name="BattleScene" parent="MainVBox/MarginContainer" unique_id=1601488368 instance=ExtResource("1_hytem")]
 layout_mode = 2
 
-[node name="Camera2D" parent="MainVBox/MarginContainer/BattleScene" index="0" unique_id=2028935612]
-position = Vector2(-2, -50)
-
 [node name="GachaScene" type="Control" parent="MainVBox/MarginContainer" unique_id=1230620265]
 layout_mode = 2
 

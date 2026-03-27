@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="PassiveSkill" format=3 uid="uid://bexqody334kyt"]
+
+[ext_resource type="Script" uid="uid://bfcnay3odbjv6" path="res://Skills/passive_skill.gd" id="1_0rkio"]
+
+[resource]
+script = ExtResource("1_0rkio")
+skill_name = "Concentration"
+description = "This skill enhances your inner strength by 3."
+inner_strength_mult = 3.0
+metadata/_custom_type_script = "uid://bfcnay3odbjv6"

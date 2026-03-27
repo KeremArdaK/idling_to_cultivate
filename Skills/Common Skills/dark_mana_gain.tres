@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="PassiveSkill" format=3 uid="uid://b1lr45qf1jq15"]
+
+[ext_resource type="Script" uid="uid://bfcnay3odbjv6" path="res://Skills/passive_skill.gd" id="1_xrept"]
+
+[resource]
+script = ExtResource("1_xrept")
+skill_name = "Dark Mana Gain"
+description = "This skill enhances your dark mana gain by 1.15."
+dark_mana_gain_mult = 1.15
+metadata/_custom_type_script = "uid://bfcnay3odbjv6"
