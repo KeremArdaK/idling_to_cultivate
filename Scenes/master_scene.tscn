@@ -87,7 +87,13 @@ size_flags_vertical = 3
 [node name="BattleScene" parent="MainVBox/MarginContainer" unique_id=1601488368 instance=ExtResource("1_hytem")]
 layout_mode = 2
 
+[node name="EnemyNameLabel" type="Label" parent="MainVBox/MarginContainer/BattleScene/HBoxContainer/LeftSide/LeftBottomPanel/VBoxContainer" parent_id_path=PackedInt32Array(1601488368, 682375385) index="0" unique_id=1309138604]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "enemyname"
+
 [node name="GachaScene" type="Control" parent="MainVBox/MarginContainer" unique_id=1230620265]
+visible = false
 layout_mode = 2
 script = ExtResource("2_gv00e")
 
@@ -166,24 +172,31 @@ horizontal_alignment = 1
 uppercase = true
 
 [node name="InventoryScene" type="Control" parent="MainVBox/MarginContainer" unique_id=1915585480]
+visible = false
 layout_mode = 2
 
 [node name="SettingsScene" type="Control" parent="MainVBox/MarginContainer" unique_id=1998132190]
+visible = false
 layout_mode = 2
 
 [node name="SkillsScene" type="Control" parent="MainVBox/MarginContainer" unique_id=1294019828]
+visible = false
 layout_mode = 2
 
 [node name="InfoScene" type="Control" parent="MainVBox/MarginContainer" unique_id=2080260933]
+visible = false
 layout_mode = 2
 
 [node name="SaveLoadScene" type="Control" parent="MainVBox/MarginContainer" unique_id=1811301216]
+visible = false
 layout_mode = 2
 
 [node name="PrestigeScene" type="Control" parent="MainVBox/MarginContainer" unique_id=679963085]
+visible = false
 layout_mode = 2
 
 [node name="StoryScene" type="Control" parent="MainVBox/MarginContainer" unique_id=2081972965]
+visible = false
 layout_mode = 2
 
 [connection signal="pressed" from="MainVBox/PanelContainer/TopNavBar/Btn_Battle" to="." method="_on_btn_battle_pressed"]

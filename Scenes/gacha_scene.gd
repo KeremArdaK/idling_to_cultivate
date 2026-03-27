@@ -39,6 +39,7 @@ func load_all_skills(path: String = "res://Skills/"):
 func update_ui():
 	mana_label.text = "Total Dark Mana: " + str(Globals.total_dark_mana)
 	btn_roll.disabled = Globals.total_dark_mana < roll_cost
+	btn_roll.text = "Roll a Skill " + str(roll_cost) + " Dark Mana"
 
 
 
@@ -46,8 +47,11 @@ func update_ui():
 func _on_btn_roll_pressed() -> void:
 	if Globals.total_dark_mana >= roll_cost:
 		Globals.total_dark_mana -= roll_cost
-		update_ui()
 		perform_roll()
+		
+		roll_cost = round(roll_cost * 1.05)
+		update_ui()
+		
 
 func perform_roll():
 	var roll = randf() #0.0 ile 1.0 arasında bir sayı verecek.
