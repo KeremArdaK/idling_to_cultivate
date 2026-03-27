@@ -33,7 +33,7 @@ func setup_arena() -> void:
 	player_spot.add_child(player_entity)
 	enemy_spot.add_child(enemy_entity)
 	
-	player_entity.speed = 75.0
+	player_entity.speed = 500.0
 	player_entity.max_hp = 100.0
 	player_entity.current_hp = 100.0
 	
@@ -98,7 +98,7 @@ func execute_attack(attacker, defender, is_player:bool) -> void:
 			Globals.total_dark_mana += earned_mana
 			print("Toplam Kara Mana:", Globals.total_dark_mana, "| Kazanılan Mana:", earned_mana)
 			
-			if enemies_defeated > ENEMIES_PER_FLOOR:
+			if enemies_defeated > ENEMIES_PER_FLOOR - 1:
 				Globals.current_floor += 1
 				enemies_defeated = 0
 				print("KATA HÜKMETTİN. Yeni Kat: ", Globals.current_floor)

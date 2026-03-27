@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://bjs2lhi1xm34d"]
 
 [ext_resource type="PackedScene" uid="uid://bt1sw4td63udd" path="res://Scenes/battlescene.tscn" id="1_hytem"]
+[ext_resource type="Script" uid="uid://ccr3thq6of6cp" path="res://Scenes/master_scene.gd" id="1_mgffv"]
+[ext_resource type="Script" uid="uid://dedkek3ovemvp" path="res://Scenes/gacha_scene.gd" id="2_gv00e"]
 
 [sub_resource type="Gradient" id="Gradient_hytem"]
 colors = PackedColorArray(0.1764706, 0, 0, 1, 0.1418224, 0.103072874, 0.2530087, 1)
@@ -15,6 +17,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_mgffv")
 
 [node name="MainVBox" type="VBoxContainer" parent="." unique_id=338501794]
 layout_mode = 1
@@ -41,6 +44,11 @@ text = "BATTLE
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
 text = "GACHA"
+
+[node name="Btn_Story" type="Button" parent="MainVBox/PanelContainer/TopNavBar" unique_id=1936245877]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "STORY"
 
 [node name="Btn_Inv" type="Button" parent="MainVBox/PanelContainer/TopNavBar" unique_id=583540087]
 layout_mode = 2
@@ -72,11 +80,6 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 30
 text = "PRESTIGE"
 
-[node name="Btn_Story" type="Button" parent="MainVBox/PanelContainer/TopNavBar" unique_id=1936245877]
-layout_mode = 2
-theme_override_font_sizes/font_size = 30
-text = "STORY"
-
 [node name="MarginContainer" type="MarginContainer" parent="MainVBox" unique_id=1934168225]
 layout_mode = 2
 size_flags_vertical = 3
@@ -85,8 +88,8 @@ size_flags_vertical = 3
 layout_mode = 2
 
 [node name="GachaScene" type="Control" parent="MainVBox/MarginContainer" unique_id=1230620265]
-visible = false
 layout_mode = 2
+script = ExtResource("2_gv00e")
 
 [node name="TextureRect" type="TextureRect" parent="MainVBox/MarginContainer/GachaScene" unique_id=1597007662]
 layout_mode = 1
@@ -161,5 +164,37 @@ theme_override_font_sizes/font_size = 28
 text = "Yeteneğin İşlevi"
 horizontal_alignment = 1
 uppercase = true
+
+[node name="InventoryScene" type="Control" parent="MainVBox/MarginContainer" unique_id=1915585480]
+layout_mode = 2
+
+[node name="SettingsScene" type="Control" parent="MainVBox/MarginContainer" unique_id=1998132190]
+layout_mode = 2
+
+[node name="SkillsScene" type="Control" parent="MainVBox/MarginContainer" unique_id=1294019828]
+layout_mode = 2
+
+[node name="InfoScene" type="Control" parent="MainVBox/MarginContainer" unique_id=2080260933]
+layout_mode = 2
+
+[node name="SaveLoadScene" type="Control" parent="MainVBox/MarginContainer" unique_id=1811301216]
+layout_mode = 2
+
+[node name="PrestigeScene" type="Control" parent="MainVBox/MarginContainer" unique_id=679963085]
+layout_mode = 2
+
+[node name="StoryScene" type="Control" parent="MainVBox/MarginContainer" unique_id=2081972965]
+layout_mode = 2
+
+[connection signal="pressed" from="MainVBox/PanelContainer/TopNavBar/Btn_Battle" to="." method="_on_btn_battle_pressed"]
+[connection signal="pressed" from="MainVBox/PanelContainer/TopNavBar/Btn_Gacha" to="." method="_on_btn_gacha_pressed"]
+[connection signal="pressed" from="MainVBox/PanelContainer/TopNavBar/Btn_Story" to="." method="_on_btn_story_pressed"]
+[connection signal="pressed" from="MainVBox/PanelContainer/TopNavBar/Btn_Inv" to="." method="_on_btn_inv_pressed"]
+[connection signal="pressed" from="MainVBox/PanelContainer/TopNavBar/Btn_Settings" to="." method="_on_btn_settings_pressed"]
+[connection signal="pressed" from="MainVBox/PanelContainer/TopNavBar/Btn_Skills" to="." method="_on_btn_skills_pressed"]
+[connection signal="pressed" from="MainVBox/PanelContainer/TopNavBar/Btn_Info" to="." method="_on_btn_info_pressed"]
+[connection signal="pressed" from="MainVBox/PanelContainer/TopNavBar/Btn_SaveLoad" to="." method="_on_btn_save_load_pressed"]
+[connection signal="pressed" from="MainVBox/PanelContainer/TopNavBar/Btn_Prestige" to="." method="_on_btn_prestige_pressed"]
+[connection signal="pressed" from="MainVBox/MarginContainer/GachaScene/VBoxContainer/Btn_Roll" to="MainVBox/MarginContainer/GachaScene" method="_on_btn_roll_pressed"]
 
 [editable path="MainVBox/MarginContainer/BattleScene"]
