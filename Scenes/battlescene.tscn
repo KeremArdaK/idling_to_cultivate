@@ -1,0 +1,85 @@
+[gd_scene format=3 uid="uid://bt1sw4td63udd"]
+
+[ext_resource type="Script" uid="uid://sfdiqr1gy4pt" path="res://Scenes/battlescene.gd" id="1_06jng"]
+
+[node name="Control" type="Control" unique_id=1601488368]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_06jng")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=2028935612]
+anchor_mode = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=927098094]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LeftSide" type="VBoxContainer" parent="HBoxContainer" unique_id=1276289211]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 1.5
+
+[node name="LeftTopPanel" type="PanelContainer" parent="HBoxContainer/LeftSide" unique_id=1048784786]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/LeftSide/LeftTopPanel" unique_id=392660932]
+layout_mode = 2
+
+[node name="PlayerSpot" type="CenterContainer" parent="HBoxContainer/LeftSide/LeftTopPanel/HBoxContainer" unique_id=1692923317]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="EnemySpot" type="CenterContainer" parent="HBoxContainer/LeftSide/LeftTopPanel/HBoxContainer" unique_id=319260927]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 1.3
+
+[node name="LeftBottomPanel" type="PanelContainer" parent="HBoxContainer/LeftSide" unique_id=677735292]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/LeftSide/LeftBottomPanel" unique_id=682375385]
+layout_mode = 2
+
+[node name="FloorLabel" type="Label" parent="HBoxContainer/LeftSide/LeftBottomPanel/VBoxContainer" unique_id=675554456]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "floor"
+
+[node name="EnemyCountLabel" type="Label" parent="HBoxContainer/LeftSide/LeftBottomPanel/VBoxContainer" unique_id=233603440]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "enemy"
+
+[node name="RightSide" type="VBoxContainer" parent="HBoxContainer" unique_id=1417408631]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="RightTopPanel" type="PanelContainer" parent="HBoxContainer/RightSide" unique_id=1152253324]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/RightSide/RightTopPanel" unique_id=179216575]
+layout_mode = 2
+
+[node name="DarkManaLabel" type="Label" parent="HBoxContainer/RightSide/RightTopPanel/VBoxContainer" unique_id=1920405138]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "dark mana"
+
+[node name="RightBottomPanel" type="ScrollContainer" parent="HBoxContainer/RightSide" unique_id=1854535572]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/RightSide/RightBottomPanel" unique_id=1433928653]
+layout_mode = 2

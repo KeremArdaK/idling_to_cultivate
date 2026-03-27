@@ -1,0 +1,66 @@
+[gd_scene format=3 uid="uid://c2sgjubw7u2dn"]
+
+[ext_resource type="Texture2D" uid="uid://du5o0hiv4eru8" path="res://icon.svg" id="1_fvn3o"]
+[ext_resource type="Script" uid="uid://dv5sie138xbrb" path="res://Scenes/battleentity.gd" id="1_upqkx"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_upqkx"]
+bg_color = Color(0.18039216, 0, 0.015686275, 0.23137255)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l2jrx"]
+bg_color = Color(0.40210927, 0, 0.10127243, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nb84y"]
+bg_color = Color(0.052335486, 5.474873e-06, 0.2768629, 0.23137255)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kepdf"]
+bg_color = Color(0.19374007, 3.1670035e-05, 0.73317033, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[node name="Control" type="Control" unique_id=914945394]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_upqkx")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=7747461]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer" unique_id=1968159201]
+layout_mode = 2
+texture = ExtResource("1_fvn3o")
+
+[node name="HealthBar" type="ProgressBar" parent="VBoxContainer" unique_id=1638036766]
+custom_minimum_size = Vector2(128, 23)
+layout_mode = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_upqkx")
+theme_override_styles/fill = SubResource("StyleBoxFlat_l2jrx")
+value = 50.0
+show_percentage = false
+
+[node name="ATBBar" type="ProgressBar" parent="VBoxContainer" unique_id=1698211430]
+custom_minimum_size = Vector2(128, 23)
+layout_mode = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_nb84y")
+theme_override_styles/fill = SubResource("StyleBoxFlat_kepdf")
+value = 50.0
+show_percentage = false
