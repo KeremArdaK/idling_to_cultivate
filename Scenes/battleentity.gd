@@ -9,14 +9,27 @@ var atb : float = 0.0
 @onready var progress_bar = $VBoxContainer/ATBBar
 @onready var original_position = character_texture.position
 @onready var hp_bar = $VBoxContainer/HealthBar
+@onready var hp_label = $VBoxContainer/HealthBar/Label
 
+
+func _process(_delta: float) -> void:
+	update_hp_ui()
+	
 func _ready() -> void:
 	hp_bar.max_value = max_hp
 	hp_bar.value = current_hp
 	progress_bar.max_value = 100.0
-
+	
+func update_hp_ui() -> void:
+	hp_bar.max_value = max_hp
+	hp_bar.value = current_hp
+	hp_label.text = str(round(current_hp)) + " / " + str(round(max_hp))
+	
 func take_damage(amount:float) -> void:
 	current_hp -= amount
+	if current_hp <= 0:
+		current_hp = 0
+	update_hp_ui()
 	hp_bar.value = current_hp
 	
 func play_attack_animation(is_player:bool) -> void:

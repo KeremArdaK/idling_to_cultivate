@@ -7,6 +7,12 @@ extends Control
 @onready var label_dark_mana = $HBoxContainer/RightSide/RightTopPanel/VBoxContainer/DarkManaLabel
 @onready var arena_box = $HBoxContainer/LeftSide/LeftTopPanel/HBoxContainer
 @onready var label_name_enemy = $HBoxContainer/LeftSide/LeftBottomPanel/VBoxContainer/EnemyNameLabel
+@onready var lbl_dmg = $HBoxContainer/RightSide/RightBottomPanel/VBoxContainer/Lbl_Damage
+@onready var lbl_speed = $HBoxContainer/RightSide/RightBottomPanel/VBoxContainer/Lbl_AS
+@onready var lbl_crit = $HBoxContainer/RightSide/RightBottomPanel/VBoxContainer/Lbl_Crit
+@onready var lbl_block = $HBoxContainer/RightSide/RightBottomPanel/VBoxContainer/Lbl_Block
+@onready var lbl_hp = $HBoxContainer/RightSide/RightBottomPanel/VBoxContainer/Lbl_HP
+@onready var lbl_dr = $HBoxContainer/RightSide/RightBottomPanel/VBoxContainer/Lbl_DR
 
 #boss isimlerini oluşturmak için gereken değişkenler:
 var boss_first_name = ["Abyssal","Umbral","Hollow","Cursed","Veiled","Crimson","Shattered","Relentless","Ironbound","Feral","Primordial","Forsaken","Ethereal","Arcane"]
@@ -51,12 +57,26 @@ func setup_arena() -> void:
 	player_spot.add_child(player_entity)
 	enemy_spot.add_child(enemy_entity)
 	
-	player_entity.speed = 500.0
-	player_entity.max_hp = 100.0
-	player_entity.current_hp = 100.0
+	#savaş başlamadan önce statları hesapla
+	Globals.calculate_combat_stats()
+	
+	player_entity.max_hp = Globals.max_hp
+	player_entity.current_hp = Globals.max_hp
+	player_entity.speed = Globals.attack_speed
+	player_entity.hp_bar.max_value = player_entity.max_hp
+	player_entity.hp_bar.value = player_entity.current_hp
 	
 	spawn_new_enemy()
+	update_stats_ui()
 
+func update_stats_ui():
+	lbl_dmg.text = "Damage: " + str(round(Globals.min_damage)) + " - " + str(round(Globals.max_damage))
+	lbl_speed.text = "Attack Speed: " + str(round(Globals.attack_speed))
+	lbl_hp.text = "Maximum Health: " + str(round(Globals.max_hp))
+	lbl_crit = "Crit Chance: " + str(round(Globals.crit_chance))
+	lbl_block = "Block Chance: " + str(round(Globals.block_chance))
+	lbl_dr = "Damage Reduction: " + str(round(Globals.damage_reduction))
+	
 func spawn_new_enemy() -> void:
 	enemy_entity.max_hp = 50 + (Globals.current_floor * 10.0)
 	enemy_entity.current_hp = enemy_entity.max_hp
@@ -86,6 +106,13 @@ func _process(delta: float) -> void:
 		arena_box.position = original_arena_pos
 	if is_combat_paused:
 		return
+	if player_entity.current_hp <= player_entity.max_hp:
+		player_entity.current_hp += Globals.hp_regen * delta
+		
+		if player_entity.current_hp > player_entity.max_hp:
+			player_entity.current_hp = player_entity.max_hp
+		
+		player_entity.update_hp_ui()
 		
 	player_entity.atb += player_entity.speed * delta
 	enemy_entity.atb += enemy_entity.speed * delta
@@ -112,6 +139,36 @@ func execute_attack(attacker, defender, is_player:bool) -> void:
 	defender.take_damage(damage)
 	await get_tree().create_timer(0.01).timeout
 	
+	var final_damage: float = 0.0
+	var is_crit: bool = false
+	var is_blocked: bool = false
+	
+	if is_player:
+		#oyuncu vuruyor ise
+		var base_dmg = randf_range(Globals.min_damage, Globals.max_damage)
+		
+		#kritik hesaplama
+		if randf() * 100.0 <= Globals.crit_chance:
+			base_dmg *= 2
+			is_crit = true
+			print("Critical Hit!")
+		final_damage = base_dmg
+		shake_strength = 20.0 if is_crit else 10.0
+	else:
+		#düşman vuruyorsa
+		var enemy_base_dmg = 10.0 + (Globals.current_floor * 5.0)
+		
+		if randf() * 100.0 <= Globals.block_chance:
+			final_damage = 0.0
+			is_blocked = true
+			print("You blocked!")
+			shake_strength = 5.0
+		else:
+			var reduction_multiplier = (100.0 - Globals.damage_reduction) / 100.0
+			final_damage = enemy_base_dmg * reduction_multiplier
+			shake_strength = 15.0
+	if not is_blocked:
+		defender.take_damage(final_damage)
 	#death check
 	if defender.current_hp <= 0:
 		if defender == player_entity:
