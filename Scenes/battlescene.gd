@@ -2,10 +2,12 @@ extends Control
 
 @onready var player_spot = $HBoxContainer/LeftSide/LeftTopPanel/HBoxContainer/PlayerSpot
 @onready var enemy_spot = $HBoxContainer/LeftSide/LeftTopPanel/HBoxContainer/EnemySpot
-@onready var camera = $Camera2D
 @onready var label_floor = $HBoxContainer/LeftSide/LeftBottomPanel/VBoxContainer/FloorLabel
 @onready var label_enemy_count = $HBoxContainer/LeftSide/LeftBottomPanel/VBoxContainer/EnemyCountLabel
 @onready var label_dark_mana = $HBoxContainer/RightSide/RightTopPanel/VBoxContainer/DarkManaLabel
+@onready var arena_box = $HBoxContainer/LeftSide/LeftTopPanel/HBoxContainer
+
+var original_arena_pos: Vector2
 var entity_scene = preload("res://Scenes/battleentity.tscn")
 var player_entity
 var enemy_entity
@@ -22,6 +24,10 @@ var shake_strength : float = 0.0
 func _ready() -> void:
 	setup_arena()
 	update_ui()
+	call_deferred("save_original_pos")
+
+func save_original_pos() -> void:
+	original_arena_pos = arena_box.position
 func setup_arena() -> void:
 	player_entity = entity_scene.instantiate()
 	enemy_entity = entity_scene.instantiate()
@@ -46,8 +52,10 @@ func spawn_new_enemy() -> void:
 func _process(delta: float) -> void:
 	#kamera sarsıntısı eklencek
 	if shake_strength > 0:
-		camera.offset = Vector2(randf_range(-shake_strength, shake_strength), randf_range(-shake_strength, shake_strength))
+		arena_box.position = original_arena_pos + Vector2(randf_range(-shake_strength, shake_strength), randf_range(-shake_strength, shake_strength))
 		shake_strength = lerpf(shake_strength, 0.0, 5 * delta)
+	else:
+		arena_box.position = original_arena_pos
 	if is_combat_paused:
 		return
 		

@@ -11,9 +11,6 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_06jng")
 
-[node name="Camera2D" type="Camera2D" parent="." unique_id=2028935612]
-anchor_mode = 0
-
 [node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=927098094]
 layout_mode = 1
 anchors_preset = 15

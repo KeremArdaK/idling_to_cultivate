@@ -1,0 +1,87 @@
+[gd_scene format=3 uid="uid://bjs2lhi1xm34d"]
+
+[ext_resource type="PackedScene" uid="uid://bt1sw4td63udd" path="res://Scenes/battlescene.tscn" id="1_hytem"]
+
+[node name="MasterScene" type="Control" unique_id=987181421]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MainVBox" type="VBoxContainer" parent="." unique_id=338501794]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="MainVBox" unique_id=1887811305]
+layout_mode = 2
+
+[node name="TopNavBar" type="HBoxContainer" parent="MainVBox/PanelContainer" unique_id=386602944]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="Btn_Battle" type="Button" parent="MainVBox/PanelContainer/TopNavBar" unique_id=819451783]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "BATTLE
+"
+
+[node name="Btn_Gacha" type="Button" parent="MainVBox/PanelContainer/TopNavBar" unique_id=14920798]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "GACHA"
+
+[node name="Btn_Inv" type="Button" parent="MainVBox/PanelContainer/TopNavBar" unique_id=583540087]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "INVENTORY"
+
+[node name="Btn_Settings" type="Button" parent="MainVBox/PanelContainer/TopNavBar" unique_id=1551938864]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "SETTINGS"
+
+[node name="Btn_Skills" type="Button" parent="MainVBox/PanelContainer/TopNavBar" unique_id=1739591713]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "SKILLS"
+
+[node name="Btn_Info" type="Button" parent="MainVBox/PanelContainer/TopNavBar" unique_id=1813953803]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "INFO"
+
+[node name="Btn_SaveLoad" type="Button" parent="MainVBox/PanelContainer/TopNavBar" unique_id=459428730]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "SAVE/LOAD"
+
+[node name="Btn_Prestige" type="Button" parent="MainVBox/PanelContainer/TopNavBar" unique_id=1403224923]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "PRESTIGE"
+
+[node name="Btn_Story" type="Button" parent="MainVBox/PanelContainer/TopNavBar" unique_id=1936245877]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "STORY"
+
+[node name="MarginContainer" type="MarginContainer" parent="MainVBox" unique_id=1934168225]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="BattleScene" parent="MainVBox/MarginContainer" unique_id=1601488368 instance=ExtResource("1_hytem")]
+layout_mode = 2
+
+[node name="Camera2D" parent="MainVBox/MarginContainer/BattleScene" index="0" unique_id=2028935612]
+position = Vector2(-2, -50)
+
+[node name="GachaScene" type="Control" parent="MainVBox/MarginContainer" unique_id=1230620265]
+layout_mode = 2
+
+[editable path="MainVBox/MarginContainer/BattleScene"]
