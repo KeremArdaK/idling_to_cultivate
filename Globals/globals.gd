@@ -40,11 +40,11 @@ func calculate_combat_stats() -> void:
 		outer_str *= skill.outer_strength_mult
 		bamt *= skill.toughness_mult
 		dark_mana_gain_multiplier *= skill.dark_mana_gain_mult
-	min_damage = 5.0 + (inner_str * 0.5)
+	min_damage = 50.0 + (inner_str * 0.5)
 	attack_speed = 20.0 + (inner_str * 0.2)
 	crit_chance = clamp(inner_str * 0.5, 0.0, 100.0)
 	
-	max_damage = 10.0 + (outer_str * 1.5)
+	max_damage = 10.0 + (outer_str * 1.5) + min_damage
 	block_chance = clamp(outer_str * 0.5, 0.0, 75.0)
 	
 	max_hp = 100.0 + (outer_str * 5.0) + (bamt * 15.0)

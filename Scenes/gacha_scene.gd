@@ -53,7 +53,7 @@ func _on_btn_roll_pressed() -> void:
 		Globals.total_dark_mana -= roll_cost
 		perform_roll()
 		
-		roll_cost = round(roll_cost * 1.01)
+		roll_cost = round(roll_cost * 1.15)
 		update_ui()
 		
 

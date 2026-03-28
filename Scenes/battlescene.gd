@@ -7,12 +7,12 @@ extends Control
 @onready var label_dark_mana = $HBoxContainer/RightSide/RightTopPanel/VBoxContainer/DarkManaLabel
 @onready var arena_box = $HBoxContainer/LeftSide/LeftTopPanel/HBoxContainer
 @onready var label_name_enemy = $HBoxContainer/LeftSide/LeftBottomPanel/VBoxContainer/EnemyNameLabel
-@onready var lbl_dmg = $HBoxContainer/RightSide/RightBottomPanel/VBoxContainer/Lbl_Damage
-@onready var lbl_speed = $HBoxContainer/RightSide/RightBottomPanel/VBoxContainer/Lbl_AS
-@onready var lbl_crit = $HBoxContainer/RightSide/RightBottomPanel/VBoxContainer/Lbl_Crit
-@onready var lbl_block = $HBoxContainer/RightSide/RightBottomPanel/VBoxContainer/Lbl_Block
-@onready var lbl_hp = $HBoxContainer/RightSide/RightBottomPanel/VBoxContainer/Lbl_HP
-@onready var lbl_dr = $HBoxContainer/RightSide/RightBottomPanel/VBoxContainer/Lbl_DR
+@onready var lbl_dmg = $HBoxContainer/RightSide/RightBottomPanel/PanelContainer/VBoxContainer/Lbl_Damage
+@onready var lbl_speed = $HBoxContainer/RightSide/RightBottomPanel/PanelContainer/VBoxContainer/Lbl_AS
+@onready var lbl_crit = $HBoxContainer/RightSide/RightBottomPanel/PanelContainer/VBoxContainer/Lbl_Crit
+@onready var lbl_block =$HBoxContainer/RightSide/RightBottomPanel/PanelContainer/VBoxContainer/Lbl_Block
+@onready var lbl_hp = $HBoxContainer/RightSide/RightBottomPanel/PanelContainer/VBoxContainer/Lbl_HP
+@onready var lbl_dr = $HBoxContainer/RightSide/RightBottomPanel/PanelContainer/VBoxContainer/Lbl_DR
 
 #boss isimlerini oluşturmak için gereken değişkenler:
 var boss_first_name = ["Abyssal","Umbral","Hollow","Cursed","Veiled","Crimson","Shattered","Relentless","Ironbound","Feral","Primordial","Forsaken","Ethereal","Arcane"]
@@ -29,6 +29,7 @@ var is_combat_paused : bool = false
 var atb_max: float = 100.0
 
 var enemies_defeated: int = 0
+var total_enemies_defeated: int = 0
 const ENEMIES_PER_FLOOR: int = 10
 var shake_strength : float = 0.0
 
@@ -99,6 +100,9 @@ func spawn_new_enemy() -> void:
 	
 func _process(delta: float) -> void:
 	update_stats_ui()
+	
+	player_entity.max_hp = Globals.max_hp
+	
 	#kamera sarsıntısı eklencek
 	if shake_strength > 0:
 		arena_box.position = original_arena_pos + Vector2(randf_range(-shake_strength, shake_strength), randf_range(-shake_strength, shake_strength))
@@ -107,6 +111,7 @@ func _process(delta: float) -> void:
 		arena_box.position = original_arena_pos
 	if is_combat_paused:
 		return
+		
 	if player_entity.current_hp <= player_entity.max_hp:
 		player_entity.current_hp += Globals.hp_regen * delta
 		
@@ -183,9 +188,10 @@ func execute_attack(attacker, defender, is_player:bool) -> void:
 		elif defender == enemy_entity:
 			print("DÜŞMAN ÖLDÜ!")
 			enemies_defeated += 1
-			var earned_mana = enemies_defeated + 1 
-			Globals.total_dark_mana += earned_mana
-			print("Toplam Kara Mana:", Globals.total_dark_mana, "| Kazanılan Mana:", earned_mana)
+			total_enemies_defeated += 1
+			var earned_mana = total_enemies_defeated + 1 
+			Globals.total_dark_mana += round(earned_mana * Globals.dark_mana_gain_multiplier)
+			print("Toplam Kara Mana:", Globals.total_dark_mana, "| Kazanılan Mana:", str(round(earned_mana * Globals.dark_mana_gain_multiplier)))
 			
 			if enemies_defeated > ENEMIES_PER_FLOOR - 1:
 				Globals.current_floor += 1

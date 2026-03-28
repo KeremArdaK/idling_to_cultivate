@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bjs2lhi1xm34d"]
 
 [ext_resource type="PackedScene" uid="uid://bt1sw4td63udd" path="res://Scenes/battlescene.tscn" id="1_hytem"]
+[ext_resource type="Theme" uid="uid://bj5rokak5d6t1" path="res://UI Theme/itoctheme.tres" id="1_j1osf"]
 [ext_resource type="Script" uid="uid://ccr3thq6of6cp" path="res://Scenes/master_scene.gd" id="1_mgffv"]
 [ext_resource type="PackedScene" uid="uid://dk44fsbk7vwyi" path="res://Scenes/gacha_scene.tscn" id="3_mgffv"]
 [ext_resource type="Script" uid="uid://dyru3tq8k0yr5" path="res://Scenes/inventory_scene.gd" id="4_kkgem"]
@@ -13,6 +14,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_j1osf")
 script = ExtResource("1_mgffv")
 
 [node name="MainVBox" type="VBoxContainer" parent="." unique_id=338501794]
@@ -88,10 +90,14 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "enemyname"
 
-[node name="VBoxContainer" parent="MainVBox/MarginContainer/BattleScene/HBoxContainer/RightSide/RightBottomPanel" parent_id_path=PackedInt32Array(1601488368, 1854535572) index="0" unique_id=1433928653]
+[node name="PanelContainer" parent="MainVBox/MarginContainer/BattleScene/HBoxContainer/RightSide/RightBottomPanel" parent_id_path=PackedInt32Array(1601488368, 1854535572) index="0" unique_id=1053352033]
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="VBoxContainer" parent="MainVBox/MarginContainer/BattleScene/HBoxContainer/RightSide/RightBottomPanel/PanelContainer" index="0" unique_id=1433928653]
 theme_override_constants/separation = 15
 
-[node name="Lbl_Damage" type="Label" parent="MainVBox/MarginContainer/BattleScene/HBoxContainer/RightSide/RightBottomPanel/VBoxContainer" index="0" unique_id=371657762]
+[node name="Lbl_Damage" type="Label" parent="MainVBox/MarginContainer/BattleScene/HBoxContainer/RightSide/RightBottomPanel/PanelContainer/VBoxContainer" index="0" unique_id=371657762]
 layout_mode = 2
 size_flags_vertical = 6
 theme_override_constants/line_spacing = 10
@@ -99,7 +105,7 @@ theme_override_constants/outline_size = 5
 theme_override_font_sizes/font_size = 32
 text = "STRENGTH"
 
-[node name="Lbl_AS" type="Label" parent="MainVBox/MarginContainer/BattleScene/HBoxContainer/RightSide/RightBottomPanel/VBoxContainer" index="1" unique_id=2061666674]
+[node name="Lbl_AS" type="Label" parent="MainVBox/MarginContainer/BattleScene/HBoxContainer/RightSide/RightBottomPanel/PanelContainer/VBoxContainer" index="1" unique_id=2061666674]
 layout_mode = 2
 size_flags_vertical = 6
 theme_override_constants/line_spacing = 10
@@ -107,7 +113,7 @@ theme_override_constants/outline_size = 5
 theme_override_font_sizes/font_size = 32
 text = "STRENGTH"
 
-[node name="Lbl_Crit" type="Label" parent="MainVBox/MarginContainer/BattleScene/HBoxContainer/RightSide/RightBottomPanel/VBoxContainer" index="2" unique_id=384166447]
+[node name="Lbl_Crit" type="Label" parent="MainVBox/MarginContainer/BattleScene/HBoxContainer/RightSide/RightBottomPanel/PanelContainer/VBoxContainer" index="2" unique_id=384166447]
 layout_mode = 2
 size_flags_vertical = 6
 theme_override_constants/line_spacing = 10
@@ -115,7 +121,7 @@ theme_override_constants/outline_size = 5
 theme_override_font_sizes/font_size = 32
 text = "STRENGTH"
 
-[node name="Lbl_Block" type="Label" parent="MainVBox/MarginContainer/BattleScene/HBoxContainer/RightSide/RightBottomPanel/VBoxContainer" index="3" unique_id=937319778]
+[node name="Lbl_Block" type="Label" parent="MainVBox/MarginContainer/BattleScene/HBoxContainer/RightSide/RightBottomPanel/PanelContainer/VBoxContainer" index="3" unique_id=937319778]
 layout_mode = 2
 size_flags_vertical = 6
 theme_override_constants/line_spacing = 10
@@ -123,7 +129,7 @@ theme_override_constants/outline_size = 5
 theme_override_font_sizes/font_size = 32
 text = "STRENGTH"
 
-[node name="Lbl_HP" type="Label" parent="MainVBox/MarginContainer/BattleScene/HBoxContainer/RightSide/RightBottomPanel/VBoxContainer" index="4" unique_id=710902093]
+[node name="Lbl_HP" type="Label" parent="MainVBox/MarginContainer/BattleScene/HBoxContainer/RightSide/RightBottomPanel/PanelContainer/VBoxContainer" index="4" unique_id=710902093]
 layout_mode = 2
 size_flags_vertical = 6
 theme_override_constants/line_spacing = 10
@@ -131,7 +137,7 @@ theme_override_constants/outline_size = 5
 theme_override_font_sizes/font_size = 32
 text = "STRENGTH"
 
-[node name="Lbl_DR" type="Label" parent="MainVBox/MarginContainer/BattleScene/HBoxContainer/RightSide/RightBottomPanel/VBoxContainer" index="5" unique_id=1136572678]
+[node name="Lbl_DR" type="Label" parent="MainVBox/MarginContainer/BattleScene/HBoxContainer/RightSide/RightBottomPanel/PanelContainer/VBoxContainer" index="5" unique_id=1136572678]
 layout_mode = 2
 size_flags_vertical = 6
 theme_override_constants/line_spacing = 10

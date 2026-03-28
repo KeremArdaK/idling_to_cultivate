@@ -1,0 +1,71 @@
+[gd_resource type="Theme" format=3 uid="uid://bj5rokak5d6t1"]
+
+[ext_resource type="FontFile" uid="uid://dnieky78w11q3" path="res://UI Theme/FiraCode-VariableFont_wght.ttf" id="1_c3nvu"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c3nvu"]
+bg_color = Color(0.07058824, 0.07058824, 0.07058824, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.1882353, 0.3019608, 0.1882353, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fl6hx"]
+bg_color = Color(0.25565878, 0.2556588, 0.2556587, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.11138939, 0.2169852, 0.00029188895, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ws7bd"]
+bg_color = Color(0.101960786, 0.101960786, 0.101960786, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.18880609, 0.3000523, 0.18891016, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k2gfx"]
+bg_color = Color(0.2509804, 0.2509804, 0.2509804, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="Gradient" id="Gradient_c3nvu"]
+interpolation_mode = 2
+colors = PackedColorArray(0.2789577, 0, 0.0717938, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_fl6hx"]
+gradient = SubResource("Gradient_c3nvu")
+fill_from = Vector2(2, 1)
+fill_to = Vector2(1, 2)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ws7bd"]
+texture = SubResource("GradientTexture2D_fl6hx")
+
+[resource]
+Button/styles/disabled = SubResource("StyleBoxFlat_c3nvu")
+Button/styles/hover = SubResource("StyleBoxFlat_fl6hx")
+Button/styles/normal = SubResource("StyleBoxFlat_ws7bd")
+Button/styles/pressed = SubResource("StyleBoxFlat_k2gfx")
+Label/font_sizes/font_size = 16
+Label/fonts/font = ExtResource("1_c3nvu")
+PanelContainer/styles/panel = SubResource("StyleBoxTexture_ws7bd")
