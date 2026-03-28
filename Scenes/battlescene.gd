@@ -98,6 +98,7 @@ func spawn_new_enemy() -> void:
 	enemy_entity.character_texture.flip_h = true
 	
 func _process(delta: float) -> void:
+	update_stats_ui()
 	#kamera sarsıntısı eklencek
 	if shake_strength > 0:
 		arena_box.position = original_arena_pos + Vector2(randf_range(-shake_strength, shake_strength), randf_range(-shake_strength, shake_strength))
