@@ -2,26 +2,18 @@
 
 [ext_resource type="Script" uid="uid://dedkek3ovemvp" path="res://Scenes/gacha_scene.gd" id="1_tc4kc"]
 
-[sub_resource type="Gradient" id="Gradient_hytem"]
-colors = PackedColorArray(0.1764706, 0, 0, 1, 0.1418224, 0.103072874, 0.2530087, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_gv00e"]
-gradient = SubResource("Gradient_hytem")
-
 [node name="GachaScene" type="Control" unique_id=269503989]
-visible = false
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_tc4kc")
 
-[node name="TextureRect" type="TextureRect" parent="." unique_id=1513081277]
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=341265151]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = SubResource("GradientTexture2D_gv00e")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=412608158]
 layout_mode = 1

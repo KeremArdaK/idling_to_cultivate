@@ -83,7 +83,6 @@ layout_mode = 2
 size_flags_vertical = 3
 
 [node name="BattleScene" parent="MainVBox/MarginContainer" unique_id=1601488368 instance=ExtResource("1_hytem")]
-visible = false
 layout_mode = 2
 
 [node name="EnemyNameLabel" type="Label" parent="MainVBox/MarginContainer/BattleScene/HBoxContainer/LeftSide/LeftBottomPanel/VBoxContainer" parent_id_path=PackedInt32Array(1601488368, 682375385) index="0" unique_id=1309138604]
@@ -147,10 +146,20 @@ theme_override_font_sizes/font_size = 32
 text = "STRENGTH"
 
 [node name="GachaScene" parent="MainVBox/MarginContainer" unique_id=269503989 instance=ExtResource("3_mgffv")]
+visible = false
 layout_mode = 2
 
+[node name="ResultName" parent="MainVBox/MarginContainer/GachaScene/VBoxContainer/ResultPanel/VBoxContainer" parent_id_path=PackedInt32Array(269503989, 541080834) index="0" unique_id=1487231622]
+text = "
+"
+
+[node name="ResultRarity" parent="MainVBox/MarginContainer/GachaScene/VBoxContainer/ResultPanel/VBoxContainer" parent_id_path=PackedInt32Array(269503989, 541080834) index="1" unique_id=497029262]
+text = ""
+
+[node name="ResultDesc" parent="MainVBox/MarginContainer/GachaScene/VBoxContainer/ResultPanel/VBoxContainer" parent_id_path=PackedInt32Array(269503989, 541080834) index="2" unique_id=1905794724]
+text = ""
+
 [node name="InventoryScene" parent="MainVBox/MarginContainer" unique_id=2104135749 instance=ExtResource("5_j1osf")]
-visible = true
 layout_mode = 2
 
 [node name="PanelContainer" type="PanelContainer" parent="MainVBox/MarginContainer/InventoryScene/Control" parent_id_path=PackedInt32Array(2104135749, 484442162) index="0" unique_id=1666529325]
@@ -161,19 +170,51 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="Btn_Equip" parent="MainVBox/MarginContainer/InventoryScene/Control/HBoxContainer/RightPanel_40" parent_id_path=PackedInt32Array(2104135749, 976169937) index="4" unique_id=920074620]
+custom_minimum_size = Vector2(0, 50)
+size_flags_stretch_ratio = 1.5
+
+[node name="Btn_Unequip" parent="MainVBox/MarginContainer/InventoryScene/Control/HBoxContainer/RightPanel_40" parent_id_path=PackedInt32Array(2104135749, 976169937) index="5" unique_id=352563541]
+custom_minimum_size = Vector2(0, 50)
+
 [node name="SettingsScene" type="Control" parent="MainVBox/MarginContainer" unique_id=1998132190]
 visible = false
 layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="MainVBox/MarginContainer/SettingsScene" unique_id=174176634]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="SkillsScene" type="Control" parent="MainVBox/MarginContainer" unique_id=1294019828]
 visible = false
 layout_mode = 2
 
+[node name="PanelContainer" type="PanelContainer" parent="MainVBox/MarginContainer/SkillsScene" unique_id=816357359]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
 [node name="InfoScene" type="Control" parent="MainVBox/MarginContainer" unique_id=2080260933]
 visible = false
 layout_mode = 2
 
+[node name="PanelContainer" type="PanelContainer" parent="MainVBox/MarginContainer/InfoScene" unique_id=1956111225]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
 [node name="SaveLoadScene" type="Control" parent="MainVBox/MarginContainer" unique_id=1811301216]
+visible = false
 layout_mode = 2
 script = ExtResource("6_0g3s7")
 
@@ -230,9 +271,25 @@ text = "HARD RESET"
 visible = false
 layout_mode = 2
 
+[node name="PanelContainer" type="PanelContainer" parent="MainVBox/MarginContainer/PrestigeScene" unique_id=15193081]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
 [node name="StoryScene" type="Control" parent="MainVBox/MarginContainer" unique_id=2081972965]
 visible = false
 layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="MainVBox/MarginContainer/StoryScene" unique_id=1436805489]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [connection signal="pressed" from="MainVBox/PanelContainer/TopNavBar/Btn_Battle" to="." method="_on_btn_battle_pressed"]
 [connection signal="pressed" from="MainVBox/PanelContainer/TopNavBar/Btn_Gacha" to="." method="_on_btn_gacha_pressed"]
