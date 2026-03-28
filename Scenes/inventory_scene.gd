@@ -14,10 +14,16 @@ extends Control
 
 var selected_skill: PassiveSkill = null
 
+
 func _ready() -> void:
 	clear_details_panel()
 	refresh_inventory_ui()
+	visibility_changed.connect(_on_visibility_changed)
 
+func _on_visibility_changed() -> void:
+	if visible: # Eğer bu sekme açıldıysa
+		refresh_inventory_ui()
+		
 func refresh_inventory_ui():
 	for child in inventory_grid.get_children():
 		child.queue_free()
