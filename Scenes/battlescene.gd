@@ -73,9 +73,9 @@ func update_stats_ui():
 	lbl_dmg.text = "Damage: " + str(round(Globals.min_damage)) + " - " + str(round(Globals.max_damage))
 	lbl_speed.text = "Attack Speed: " + str(round(Globals.attack_speed))
 	lbl_hp.text = "Maximum Health: " + str(round(Globals.max_hp))
-	lbl_crit = "Crit Chance: " + str(round(Globals.crit_chance))
-	lbl_block = "Block Chance: " + str(round(Globals.block_chance))
-	lbl_dr = "Damage Reduction: " + str(round(Globals.damage_reduction))
+	lbl_crit.text = "Crit Chance: " + str(round(Globals.crit_chance))
+	lbl_block.text = "Block Chance: " + str(round(Globals.block_chance))
+	lbl_dr.text = "Damage Reduction: " + str(round(Globals.damage_reduction))
 	
 func spawn_new_enemy() -> void:
 	enemy_entity.max_hp = 50 + (Globals.current_floor * 10.0)
@@ -136,8 +136,6 @@ func execute_attack(attacker, defender, is_player:bool) -> void:
 	await get_tree().create_timer(0.3).timeout
 	
 	shake_strength = 3.0
-	var damage = 20.0
-	defender.take_damage(damage)
 	await get_tree().create_timer(0.01).timeout
 	
 	var final_damage: float = 0.0
@@ -170,6 +168,9 @@ func execute_attack(attacker, defender, is_player:bool) -> void:
 			shake_strength = 15.0
 	if not is_blocked:
 		defender.take_damage(final_damage)
+		var indicator = preload("res://Scenes/damage_indicator.tscn").instantiate()
+		defender.add_child(indicator)
+		indicator.setup(str(round(final_damage)), is_crit)
 	#death check
 	if defender.current_hp <= 0:
 		if defender == player_entity:

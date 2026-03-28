@@ -81,7 +81,6 @@ layout_mode = 2
 size_flags_vertical = 3
 
 [node name="BattleScene" parent="MainVBox/MarginContainer" unique_id=1601488368 instance=ExtResource("1_hytem")]
-visible = false
 layout_mode = 2
 
 [node name="EnemyNameLabel" type="Label" parent="MainVBox/MarginContainer/BattleScene/HBoxContainer/LeftSide/LeftBottomPanel/VBoxContainer" parent_id_path=PackedInt32Array(1601488368, 682375385) index="0" unique_id=1309138604]
@@ -144,6 +143,7 @@ text = "STRENGTH"
 layout_mode = 2
 
 [node name="InventoryScene" type="Control" parent="MainVBox/MarginContainer" unique_id=365183655]
+visible = false
 layout_mode = 2
 script = ExtResource("4_kkgem")
 
