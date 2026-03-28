@@ -3,6 +3,9 @@ extends Node
 var player_inv: Inventory = preload("res://Player/players_inventory.tres")
 var total_dark_mana: int = 1000
 var current_floor: int = 1
+var enemies_defeated: int = 0
+var roll_cost: int = 100
+var total_enemies_defeated: int = 0
 
 #base statlar
 var base_inner_str: float = 10.0

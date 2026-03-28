@@ -7,7 +7,6 @@ extends Control
 @onready var result_desc = $VBoxContainer/ResultPanel/VBoxContainer/ResultDesc
 
 var all_skills: Array[PassiveSkill] = []
-var roll_cost: int = 100
 
 func _ready() -> void:
 	load_all_skills()
@@ -42,18 +41,18 @@ func load_all_skills(path: String = "res://Skills/"):
 func update_ui():
 	
 	mana_label.text = "Total Dark Mana: " + str(Globals.total_dark_mana)
-	btn_roll.disabled = Globals.total_dark_mana < roll_cost
-	btn_roll.text = "Roll a Skill " + str(roll_cost) + " Dark Mana"
+	btn_roll.disabled = Globals.total_dark_mana < Globals.roll_cost
+	btn_roll.text = "Roll a Skill " + str(Globals.roll_cost) + " Dark Mana"
 
 
 
 
 func _on_btn_roll_pressed() -> void:
-	if Globals.total_dark_mana >= roll_cost:
-		Globals.total_dark_mana -= roll_cost
+	if Globals.total_dark_mana >= Globals.roll_cost:
+		Globals.total_dark_mana -= Globals.roll_cost
 		perform_roll()
 		
-		roll_cost = round(roll_cost * 1.15)
+		Globals.roll_cost = round(Globals.roll_cost * 1.15)
 		update_ui()
 		
 

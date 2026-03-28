@@ -1,0 +1,92 @@
+[gd_scene format=3 uid="uid://bg5wunapqtddh"]
+
+[ext_resource type="Script" uid="uid://dyru3tq8k0yr5" path="res://Scenes/inventory_scene.gd" id="1_h4vb5"]
+[ext_resource type="Texture2D" uid="uid://du5o0hiv4eru8" path="res://icon.svg" id="2_vqtcu"]
+
+[node name="InventoryScene" type="Control" unique_id=2104135749]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_h4vb5")
+
+[node name="Control" type="Control" parent="." unique_id=484442162]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control" unique_id=827022169]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LeftPanel_60" type="VBoxContainer" parent="Control/HBoxContainer" unique_id=1140635668]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 1.5
+
+[node name="EquippedSkills" type="Label" parent="Control/HBoxContainer/LeftPanel_60" unique_id=1289087619]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Equipped Skills"
+
+[node name="EquippedGrid" type="GridContainer" parent="Control/HBoxContainer/LeftPanel_60" unique_id=2132961338]
+layout_mode = 2
+columns = 3
+
+[node name="HSeparator" type="HSeparator" parent="Control/HBoxContainer/LeftPanel_60" unique_id=652887762]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/HBoxContainer/LeftPanel_60" unique_id=1906504258]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "All Skills"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Control/HBoxContainer/LeftPanel_60" unique_id=275624669]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="InventoryGrid" type="GridContainer" parent="Control/HBoxContainer/LeftPanel_60/ScrollContainer" unique_id=247361746]
+layout_mode = 2
+columns = 5
+
+[node name="RightPanel_40" type="VBoxContainer" parent="Control/HBoxContainer" unique_id=976169937]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TextureRect" type="TextureRect" parent="Control/HBoxContainer/RightPanel_40" unique_id=94470618]
+layout_mode = 2
+texture = ExtResource("2_vqtcu")
+stretch_mode = 5
+
+[node name="SkillLblName" type="Label" parent="Control/HBoxContainer/RightPanel_40" unique_id=823059126]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "SkillName"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SkillLblRarity" type="Label" parent="Control/HBoxContainer/RightPanel_40" unique_id=652043106]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "SkillRarity"
+
+[node name="SkillLblDesc" type="Label" parent="Control/HBoxContainer/RightPanel_40" unique_id=1003702077]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Skill Description"
+autowrap_mode = 3
+
+[node name="Btn_Equip" type="Button" parent="Control/HBoxContainer/RightPanel_40" unique_id=920074620]
+layout_mode = 2
+text = "EQUIP"
+
+[node name="Btn_Unequip" type="Button" parent="Control/HBoxContainer/RightPanel_40" unique_id=352563541]
+layout_mode = 2
+text = "UNEQUIP"
