@@ -1,5 +1,6 @@
 extends Node
 
+var player_inv: Inventory = preload("res://Player/players_inventory.tres")
 var total_dark_mana: int = 1000
 var current_floor: int = 1
 

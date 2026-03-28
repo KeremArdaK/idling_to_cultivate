@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="Inventory" format=3 uid="uid://bxlmiy18fw4g8"]
+
+[ext_resource type="Script" uid="uid://bfcnay3odbjv6" path="res://Skills/passive_skill.gd" id="1_irct6"]
+[ext_resource type="Script" uid="uid://b5unihpvw1ypy" path="res://inventory.gd" id="2_a8oab"]
+
+[resource]
+script = ExtResource("2_a8oab")
+metadata/_custom_type_script = "uid://b5unihpvw1ypy"

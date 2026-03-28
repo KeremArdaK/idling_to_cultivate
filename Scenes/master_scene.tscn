@@ -2,13 +2,9 @@
 
 [ext_resource type="PackedScene" uid="uid://bt1sw4td63udd" path="res://Scenes/battlescene.tscn" id="1_hytem"]
 [ext_resource type="Script" uid="uid://ccr3thq6of6cp" path="res://Scenes/master_scene.gd" id="1_mgffv"]
-[ext_resource type="Script" uid="uid://dedkek3ovemvp" path="res://Scenes/gacha_scene.gd" id="2_gv00e"]
-
-[sub_resource type="Gradient" id="Gradient_hytem"]
-colors = PackedColorArray(0.1764706, 0, 0, 1, 0.1418224, 0.103072874, 0.2530087, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_gv00e"]
-gradient = SubResource("Gradient_hytem")
+[ext_resource type="PackedScene" uid="uid://dk44fsbk7vwyi" path="res://Scenes/gacha_scene.tscn" id="3_mgffv"]
+[ext_resource type="Script" uid="uid://dyru3tq8k0yr5" path="res://Scenes/inventory_scene.gd" id="4_kkgem"]
+[ext_resource type="Texture2D" uid="uid://du5o0hiv4eru8" path="res://icon.svg" id="5_j1osf"]
 
 [node name="MasterScene" type="Control" unique_id=987181421]
 layout_mode = 3
@@ -85,6 +81,7 @@ layout_mode = 2
 size_flags_vertical = 3
 
 [node name="BattleScene" parent="MainVBox/MarginContainer" unique_id=1601488368 instance=ExtResource("1_hytem")]
+visible = false
 layout_mode = 2
 
 [node name="EnemyNameLabel" type="Label" parent="MainVBox/MarginContainer/BattleScene/HBoxContainer/LeftSide/LeftBottomPanel/VBoxContainer" parent_id_path=PackedInt32Array(1601488368, 682375385) index="0" unique_id=1309138604]
@@ -143,21 +140,14 @@ theme_override_constants/outline_size = 5
 theme_override_font_sizes/font_size = 32
 text = "STRENGTH"
 
-[node name="GachaScene" type="Control" parent="MainVBox/MarginContainer" unique_id=1230620265]
-visible = false
+[node name="GachaScene" parent="MainVBox/MarginContainer" unique_id=269503989 instance=ExtResource("3_mgffv")]
 layout_mode = 2
-script = ExtResource("2_gv00e")
 
-[node name="TextureRect" type="TextureRect" parent="MainVBox/MarginContainer/GachaScene" unique_id=1597007662]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = SubResource("GradientTexture2D_gv00e")
+[node name="InventoryScene" type="Control" parent="MainVBox/MarginContainer" unique_id=365183655]
+layout_mode = 2
+script = ExtResource("4_kkgem")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MainVBox/MarginContainer/GachaScene" unique_id=1688858355]
+[node name="Control" type="Control" parent="MainVBox/MarginContainer/InventoryScene" unique_id=755118955]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -165,66 +155,79 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="TitleLabel" type="Label" parent="MainVBox/MarginContainer/GachaScene/VBoxContainer" unique_id=185965243]
+[node name="HBoxContainer" type="HBoxContainer" parent="MainVBox/MarginContainer/InventoryScene/Control" unique_id=132349619]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LeftPanel_60" type="VBoxContainer" parent="MainVBox/MarginContainer/InventoryScene/Control/HBoxContainer" unique_id=2070095716]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 1.5
+
+[node name="EquippedSkills" type="Label" parent="MainVBox/MarginContainer/InventoryScene/Control/HBoxContainer/LeftPanel_60" unique_id=1395079959]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Equipped Skills"
+
+[node name="EquippedGrid" type="GridContainer" parent="MainVBox/MarginContainer/InventoryScene/Control/HBoxContainer/LeftPanel_60" unique_id=1582003129]
+layout_mode = 2
+columns = 3
+
+[node name="HSeparator" type="HSeparator" parent="MainVBox/MarginContainer/InventoryScene/Control/HBoxContainer/LeftPanel_60" unique_id=1292881262]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MainVBox/MarginContainer/InventoryScene/Control/HBoxContainer/LeftPanel_60" unique_id=2129758497]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "All Skills"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MainVBox/MarginContainer/InventoryScene/Control/HBoxContainer/LeftPanel_60" unique_id=245359922]
 layout_mode = 2
 size_flags_vertical = 3
-size_flags_stretch_ratio = 0.25
-theme_override_font_sizes/font_size = 32
-text = "KARA SUNAĞA HOŞ GELDİN"
+
+[node name="InventoryGrid" type="GridContainer" parent="MainVBox/MarginContainer/InventoryScene/Control/HBoxContainer/LeftPanel_60/ScrollContainer" unique_id=1646990091]
+layout_mode = 2
+columns = 5
+
+[node name="RightPanel_40" type="VBoxContainer" parent="MainVBox/MarginContainer/InventoryScene/Control/HBoxContainer" unique_id=517439425]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TextureRect" type="TextureRect" parent="MainVBox/MarginContainer/InventoryScene/Control/HBoxContainer/RightPanel_40" unique_id=524213442]
+layout_mode = 2
+texture = ExtResource("5_j1osf")
+stretch_mode = 5
+
+[node name="SkillLblName" type="Label" parent="MainVBox/MarginContainer/InventoryScene/Control/HBoxContainer/RightPanel_40" unique_id=1251171952]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "SkillName"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ManaLabel" type="Label" parent="MainVBox/MarginContainer/GachaScene/VBoxContainer" unique_id=1840530742]
+[node name="SkillLblRarity" type="Label" parent="MainVBox/MarginContainer/InventoryScene/Control/HBoxContainer/RightPanel_40" unique_id=104697669]
 layout_mode = 2
-size_flags_vertical = 6
-size_flags_stretch_ratio = 0.5
-theme_override_font_sizes/font_size = 28
-text = "SAHİP OLDUĞUN MANA: 0"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Btn_Roll" type="Button" parent="MainVBox/MarginContainer/GachaScene/VBoxContainer" unique_id=272196557]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 6
-size_flags_stretch_ratio = 0.95
 theme_override_font_sizes/font_size = 32
-text = "BİR SKİLL ÇEVİRMEK İÇİN TIKLA"
+text = "SkillRarity"
 
-[node name="ResultPanel" type="PanelContainer" parent="MainVBox/MarginContainer/GachaScene/VBoxContainer" unique_id=501636576]
+[node name="SkillLblDesc" type="Label" parent="MainVBox/MarginContainer/InventoryScene/Control/HBoxContainer/RightPanel_40" unique_id=1055571082]
+custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
-size_flags_vertical = 3
+theme_override_font_sizes/font_size = 32
+text = "Skill Description"
+autowrap_mode = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MainVBox/MarginContainer/GachaScene/VBoxContainer/ResultPanel" unique_id=528629760]
+[node name="Btn_Equip" type="Button" parent="MainVBox/MarginContainer/InventoryScene/Control/HBoxContainer/RightPanel_40" unique_id=375293580]
 layout_mode = 2
+text = "EQUIP"
 
-[node name="ResultName" type="Label" parent="MainVBox/MarginContainer/GachaScene/VBoxContainer/ResultPanel/VBoxContainer" unique_id=1660784129]
+[node name="Btn_Unequip" type="Button" parent="MainVBox/MarginContainer/InventoryScene/Control/HBoxContainer/RightPanel_40" unique_id=2028708347]
 layout_mode = 2
-size_flags_vertical = 6
-theme_override_font_sizes/font_size = 28
-text = "Yetenek Adı"
-horizontal_alignment = 1
-uppercase = true
-
-[node name="ResultRarity" type="Label" parent="MainVBox/MarginContainer/GachaScene/VBoxContainer/ResultPanel/VBoxContainer" unique_id=1294535035]
-layout_mode = 2
-size_flags_vertical = 6
-theme_override_font_sizes/font_size = 28
-text = "YetenekNadirliği"
-horizontal_alignment = 1
-uppercase = true
-
-[node name="ResultDesc" type="Label" parent="MainVBox/MarginContainer/GachaScene/VBoxContainer/ResultPanel/VBoxContainer" unique_id=2115566392]
-layout_mode = 2
-size_flags_vertical = 6
-theme_override_font_sizes/font_size = 28
-text = "Yeteneğin İşlevi"
-horizontal_alignment = 1
-uppercase = true
-
-[node name="InventoryScene" type="Control" parent="MainVBox/MarginContainer" unique_id=1915585480]
-visible = false
-layout_mode = 2
+text = "UNEQUIP"
 
 [node name="SettingsScene" type="Control" parent="MainVBox/MarginContainer" unique_id=1998132190]
 visible = false
@@ -259,6 +262,6 @@ layout_mode = 2
 [connection signal="pressed" from="MainVBox/PanelContainer/TopNavBar/Btn_Info" to="." method="_on_btn_info_pressed"]
 [connection signal="pressed" from="MainVBox/PanelContainer/TopNavBar/Btn_SaveLoad" to="." method="_on_btn_save_load_pressed"]
 [connection signal="pressed" from="MainVBox/PanelContainer/TopNavBar/Btn_Prestige" to="." method="_on_btn_prestige_pressed"]
-[connection signal="pressed" from="MainVBox/MarginContainer/GachaScene/VBoxContainer/Btn_Roll" to="MainVBox/MarginContainer/GachaScene" method="_on_btn_roll_pressed"]
 
 [editable path="MainVBox/MarginContainer/BattleScene"]
+[editable path="MainVBox/MarginContainer/GachaScene"]

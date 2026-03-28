@@ -75,10 +75,10 @@ func perform_roll():
 	if possible_skills.size() > 0:
 		var pulled_skill = possible_skills.pick_random()
 		
-		if Globals.unlocked_skills.has(pulled_skill):
+		if Globals.player_inv.unlocked_skills.has(pulled_skill):
 			process_refund(pulled_skill)
 		else:
-			Globals.unlocked_skills.append(pulled_skill)
+			Globals.player_inv.unlocked_skills.append(pulled_skill)
 			show_result(pulled_skill, false)
 
 func process_refund(skill: PassiveSkill):
@@ -88,11 +88,11 @@ func process_refund(skill: PassiveSkill):
 	
 func show_result(skill: PassiveSkill, is_duplicate:bool, refund:int=0):
 	if is_duplicate:
-		result_name.text = "You have" + skill.skill_name
-		result_desc.text = str(refund) + "Dark Mana Refunded"
+		result_name.text = "You have " + skill.skill_name
+		result_desc.text = str(refund) + " Dark Mana Refunded"
 		result_name.modulate = Color.WEB_GRAY
 	else:
-		result_name.text = skill.skill_name + str("(NEW)")
+		result_name.text = skill.skill_name + str(" (NEW)")
 		result_desc.text = skill.description
 		result_name.modulate = Color.WHITE
 		
