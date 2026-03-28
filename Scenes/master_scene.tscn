@@ -149,6 +149,9 @@ text = "STRENGTH"
 visible = false
 layout_mode = 2
 
+[node name="TitleLabel" parent="MainVBox/MarginContainer/GachaScene/VBoxContainer" parent_id_path=PackedInt32Array(269503989, 412608158) index="0" unique_id=1414123643]
+text = "WELCOME TO THE DARK ALTAR"
+
 [node name="ResultName" parent="MainVBox/MarginContainer/GachaScene/VBoxContainer/ResultPanel/VBoxContainer" parent_id_path=PackedInt32Array(269503989, 541080834) index="0" unique_id=1487231622]
 text = "
 "
