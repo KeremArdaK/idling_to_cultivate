@@ -156,7 +156,10 @@ func deal_dot_damage(amount: float, color: Color) -> void:
 	enemy_entity.add_child(indicator)
 	indicator.setup_dot(str(round(amount)), color)
 	
-	# Eğer zehirden/yanmadan öldüyse
+	indicator.position.x += randf_range(-10.0, 10.0)
+	indicator.position.y += randf_range(-5.0, 5.0)
+	
+	# eğer zehirden/yanmadan öldüyse
 	if enemy_entity.current_hp <= 0:
 		enemy_entity.current_hp = 0
 		is_combat_paused = true
