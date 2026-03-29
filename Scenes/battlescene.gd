@@ -24,6 +24,7 @@ var original_arena_pos: Vector2
 var entity_scene = preload("res://Scenes/battleentity.tscn")
 var player_entity
 var enemy_entity
+var dot_timer: float = 0.0
 
 var is_combat_paused : bool = false
 var atb_max: float = 100.0
@@ -97,20 +98,12 @@ func spawn_new_enemy() -> void:
 	enemy_entity.character_texture.flip_h = true
 	
 func _process(delta: float) -> void:
-	var total_dot_dmg = Globals.total_poison_dmg + Globals.total_burn_dmg + Globals.total_bleed_dmg
-	if not is_combat_paused and enemy_entity != null and total_dot_dmg > 0:
-		var dot_tick = total_dot_dmg * delta
-		enemy_entity.current_hp -= dot_tick
-		
-		if enemy_entity.current_hp <= 0:
-			enemy_entity.current_hp = 0
-			enemy_entity.update_hp_ui()
-			
-			is_combat_paused = true
-			check_death(enemy_entity)
-			is_combat_paused = false
-		else:
-			enemy_entity.update_hp_ui()
+	update_ui()
+	if not is_combat_paused and enemy_entity != null:
+		dot_timer += delta
+		if dot_timer >= 0.5: #dot_timer 1'e ulaştığı zaman
+			dot_timer -= 0.5 #sayacı sıfırla
+			apply_dot_effects()
 	update_stats_ui()
 	
 	player_entity.max_hp = Globals.max_hp
@@ -142,6 +135,34 @@ func _process(delta: float) -> void:
 		execute_attack(player_entity, enemy_entity, true)
 	elif enemy_entity.atb >= atb_max:
 		execute_attack(enemy_entity, player_entity, false)
+
+func apply_dot_effects() -> void:
+	if Globals.total_poison_dmg > 0:
+		deal_dot_damage(Globals.total_poison_dmg, Color.GREEN)
+	if Globals.total_burn_dmg > 0:
+		deal_dot_damage(Globals.total_burn_dmg, Color.ORANGE)
+	if Globals.total_bleed_dmg > 0:
+		deal_dot_damage(Globals.total_bleed_dmg, Color.DARK_RED)
+
+func deal_dot_damage(amount: float, color: Color) -> void:
+	if enemy_entity == null or enemy_entity.current_hp <= 0:
+		return
+		
+	enemy_entity.current_hp -= amount
+	enemy_entity.update_hp_ui()
+	
+	# renkli göstergeyi yarat
+	var indicator = preload("res://Scenes/damage_indicator.tscn").instantiate()
+	enemy_entity.add_child(indicator)
+	indicator.setup_dot(str(round(amount)), color)
+	
+	# Eğer zehirden/yanmadan öldüyse
+	if enemy_entity.current_hp <= 0:
+		enemy_entity.current_hp = 0
+		is_combat_paused = true
+		check_death(enemy_entity)
+		is_combat_paused = false
+	
 
 func execute_attack(attacker, defender, is_player:bool) -> void:
 	is_combat_paused = true
@@ -216,17 +237,25 @@ func check_death(defender) -> void:
 			player_entity.current_hp = player_entity.max_hp
 			player_entity.hp_bar.value = player_entity.max_hp
 			spawn_new_enemy()
+			
 		elif defender == enemy_entity:
 			print("DÜŞMAN ÖLDÜ!")
 			Globals.enemies_defeated += 1
 			Globals.total_enemies_defeated += 1
-			var earned_mana = Globals.total_enemies_defeated + 1 
-			Globals.total_dark_mana += round(earned_mana * Globals.dark_mana_gain_multiplier)
-			print("Toplam Kara Mana:", Globals.total_dark_mana, "| Kazanılan Mana:", str(round(earned_mana * Globals.dark_mana_gain_multiplier)))
-			spawn_new_enemy()
 			
+			var earned_mana = Globals.total_enemies_defeated + 1 
+			var final_earned = round(earned_mana * Globals.dark_mana_gain_multiplier)
+			Globals.total_dark_mana += final_earned
+			print("Toplam Kara Mana:", Globals.total_dark_mana, "| Kazanılan Mana:", final_earned)
+			
+			# ÖNCE KAT KONTROLÜNÜ YAP (Böylece yeni düşman yeni kata göre doğar)
 			if Globals.enemies_defeated > ENEMIES_PER_FLOOR - 1:
 				Globals.current_floor += 1
 				Globals.enemies_defeated = 0
 				print("KATA HÜKMETTİN. Yeni Kat: ", Globals.current_floor)
 				
+			# SONRA DÜŞMANI ÇAĞIR
+			spawn_new_enemy()
+			
+		# SAVAŞ BİTTİĞİNDE ARAYÜZÜ KESİNLİKLE GÜNCELLE!
+		update_ui()

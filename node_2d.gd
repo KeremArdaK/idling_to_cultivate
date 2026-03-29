@@ -17,3 +17,14 @@ func setup(amount_text: String, is_crit: bool = false, is_heal:bool = false):
 	tween.tween_property(self, "position", position + Vector2(0, -50), 0.5).set_trans(Tween.TRANS_QUART).set_ease(Tween.EASE_OUT)
 	tween.tween_property(self, "modulate:a", 0.0, 0.5)
 	tween.tween_callback(queue_free)
+
+func setup_dot(amount_text: String, color: Color):
+	$Label.text = amount_text
+	$Label.modulate = color
+	$Label.scale = Vector2(1.1, 1.1)
+	
+	var tween = create_tween()
+	# Sayı biraz daha yavaş ve süzülerek yukarı çıksın
+	tween.tween_property(self, "position", position + Vector2(0, -40), 0.8).set_trans(Tween.TRANS_QUART).set_ease(Tween.EASE_OUT)
+	tween.tween_property(self, "modulate:a", 0.0, 0.8)
+	tween.tween_callback(queue_free)
