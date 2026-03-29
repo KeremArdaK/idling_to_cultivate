@@ -9,7 +9,4 @@ description = "This skill enhances your dark mana gain by 1.2 and  inner strengt
 rarity = 1
 inner_strength_mult = 1.5
 dark_mana_gain_mult = 1.2
-poison_dmg_per_sec = 50.0
-burn_dmg_per_sec = 50.0
-bleed_dmg_per_sec = 50.0
 metadata/_custom_type_script = "uid://bfcnay3odbjv6"
