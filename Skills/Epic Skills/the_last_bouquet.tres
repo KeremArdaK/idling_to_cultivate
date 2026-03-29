@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="PassiveSkill" format=3 uid="uid://datmoqti0tsny"]
+
+[ext_resource type="Script" uid="uid://bfcnay3odbjv6" path="res://Skills/passive_skill.gd" id="1_adpqo"]
+
+[resource]
+script = ExtResource("1_adpqo")
+skill_name = "The Last Bouquet"
+description = "A toxic and thorny floral arrangement offered to the enemy. Lethally elegant, beautifully fatal.
+40 Poison Per Sec
+20 Bleed Per Sec"
+rarity = 2
+poison_dmg_per_sec = 40.0
+bleed_dmg_per_sec = 20.0
+metadata/_custom_type_script = "uid://bfcnay3odbjv6"

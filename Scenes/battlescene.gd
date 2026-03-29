@@ -198,11 +198,12 @@ func execute_attack(attacker, defender, is_player:bool) -> void:
 		
 		if heal_amount > 0 and player_entity.current_hp < player_entity.max_hp:
 			player_entity.current_hp += heal_amount
+			
 			if player_entity.current_hp > player_entity.max_hp:
 				player_entity.current_hp = player_entity.max_hp
-				var indicator = preload("res://Scenes/damage_indicator.tscn").instantiate()
-				player_entity.add_child(indicator)
-				indicator.setup(Globals.format_number(round(heal_amount)), false, true)
+			var indicator = preload("res://Scenes/damage_indicator.tscn").instantiate()
+			player_entity.add_child(indicator)
+			indicator.setup(Globals.format_number(round(heal_amount)), false, true)
 			player_entity.update_hp_ui()
 	else:
 		#düşman vuruyorsa

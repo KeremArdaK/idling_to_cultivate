@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="PassiveSkill" format=3 uid="uid://b5prvx6jf6rdp"]
+
+[ext_resource type="Script" uid="uid://bfcnay3odbjv6" path="res://Skills/passive_skill.gd" id="1_astdd"]
+
+[resource]
+script = ExtResource("1_astdd")
+skill_name = "Eternal Fate"
+description = "The inescapable end. A flawless equilibrium that steadily crushes the opponent, sealing their doom with the passage of time.
+1.3 InnerSTR, OuterSTR,Toughness, Dark Mana Gain."
+rarity = 2
+inner_strength_mult = 1.3
+outer_strength_mult = 1.3
+toughness_mult = 1.3
+dark_mana_gain_mult = 1.3
+metadata/_custom_type_script = "uid://bfcnay3odbjv6"

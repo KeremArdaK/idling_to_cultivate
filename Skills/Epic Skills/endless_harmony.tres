@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="PassiveSkill" format=3 uid="uid://blxpaccemm1dl"]
+
+[ext_resource type="Script" uid="uid://bfcnay3odbjv6" path="res://Skills/passive_skill.gd" id="1_ph85j"]
+
+[resource]
+script = ExtResource("1_ph85j")
+skill_name = "Endless Harmony"
+description = "A transcendent state of meditation, elevating both body and mind to the very precipice of immortality.
+2.5 Toughness
+%10 Lifesteal
+"
+rarity = 2
+toughness_mult = 2.5
+life_steal_percent = 10.0
+metadata/_custom_type_script = "uid://bfcnay3odbjv6"

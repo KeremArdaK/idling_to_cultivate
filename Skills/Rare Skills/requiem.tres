@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="PassiveSkill" format=3 uid="uid://bq2cp413j4cyy"]
+
+[ext_resource type="Script" uid="uid://bfcnay3odbjv6" path="res://Skills/passive_skill.gd" id="1_qk5s3"]
+
+[resource]
+script = ExtResource("1_qk5s3")
+skill_name = "Requiem"
+description = "A solemn melody that slowly siphons life and dark mana from the fallen.
+3x Dark Mana Gain
+%10 Lifesteal"
+rarity = 1
+dark_mana_gain_mult = 3.0
+life_steal_percent = 10.0
+metadata/_custom_type_script = "uid://bfcnay3odbjv6"

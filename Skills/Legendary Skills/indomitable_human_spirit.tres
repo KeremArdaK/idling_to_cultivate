@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="PassiveSkill" format=3 uid="uid://8d3kofnwkqum"]
+
+[ext_resource type="Script" uid="uid://bfcnay3odbjv6" path="res://Skills/passive_skill.gd" id="1_sv6ng"]
+
+[resource]
+script = ExtResource("1_sv6ng")
+skill_name = "Indomitable Human Spirit"
+description = "The sheer, terrifying willpower of humanity. No matter the damage taken, it refuses to fall, regenerating through pure defiance.
+10x InnerSTR
+20x OuterSTR
+8x Toughness
+2x Dark Mana Gain
+%75 Lifeseal"
+rarity = 3
+inner_strength_mult = 10.0
+outer_strength_mult = 20.0
+toughness_mult = 8.0
+dark_mana_gain_mult = 2.0
+life_steal_percent = 75.0
+metadata/_custom_type_script = "uid://bfcnay3odbjv6"

@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="PassiveSkill" format=3 uid="uid://d3ftnl2nntija"]
+
+[ext_resource type="Script" uid="uid://bfcnay3odbjv6" path="res://Skills/passive_skill.gd" id="1_f43rm"]
+
+[resource]
+script = ExtResource("1_f43rm")
+skill_name = "Broken Mirrors"
+description = "A defensive martial art that shatters incoming strikes, slicing the opponent with the fragmented shards of their own attacks.
+0.8 InnerSTR
+1.8 Toughness
+10 Bleed Per Second"
+rarity = 2
+inner_strength_mult = 0.8
+toughness_mult = 1.8
+bleed_dmg_per_sec = 10.0
+metadata/_custom_type_script = "uid://bfcnay3odbjv6"

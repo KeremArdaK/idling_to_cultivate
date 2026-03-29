@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="PassiveSkill" format=3 uid="uid://5or7jf4oq2sh"]
+
+[ext_resource type="Script" uid="uid://bfcnay3odbjv6" path="res://Skills/passive_skill.gd" id="1_s47e1"]
+
+[resource]
+script = ExtResource("1_s47e1")
+skill_name = "Rising Sun"
+description = "An overwhelming and absolute physical supremacy, rising inevitably from the depths of the abyss.
+1.5 InnerSTR
+1.5 OuterSTR
+15 Burn Per Second"
+rarity = 2
+inner_strength_mult = 1.5
+outer_strength_mult = 1.5
+burn_dmg_per_sec = 15.0
+metadata/_custom_type_script = "uid://bfcnay3odbjv6"

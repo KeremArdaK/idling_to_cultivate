@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="PassiveSkill" format=3 uid="uid://bpmgub3ocmjyv"]
+
+[ext_resource type="Script" uid="uid://bfcnay3odbjv6" path="res://Skills/passive_skill.gd" id="1_g8moa"]
+
+[resource]
+script = ExtResource("1_g8moa")
+skill_name = "Owner of Galaxy's Final Wish"
+description = "A single, cataclysmic strike meant to sever the sky. It sacrifices all defense for one world-ending blow.
+0.8x All battle stats
+20x Dark Mana Gain
+"
+rarity = 3
+inner_strength_mult = 0.8
+outer_strength_mult = 0.8
+toughness_mult = 0.8
+dark_mana_gain_mult = 20.0
+metadata/_custom_type_script = "uid://bfcnay3odbjv6"

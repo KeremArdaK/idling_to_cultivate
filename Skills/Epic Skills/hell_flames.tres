@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="PassiveSkill" format=3 uid="uid://b48n8blghlmwg"]
+
+[ext_resource type="Script" uid="uid://bfcnay3odbjv6" path="res://Skills/passive_skill.gd" id="1_sgn3h"]
+
+[resource]
+script = ExtResource("1_sgn3h")
+skill_name = "Hell Flames"
+description = "Absolute ruin. An untamed inferno that incinerates everything in its path, sacrificing the caster's own defenses for pure, unadulterated devastation.
+1.5 InnerSTR
+0.5 Toughness
+50 Burn Per Second. One of The highest DoT in the game."
+rarity = 2
+inner_strength_mult = 1.5
+toughness_mult = 0.5
+burn_dmg_per_sec = 50.0
+metadata/_custom_type_script = "uid://bfcnay3odbjv6"

@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="PassiveSkill" format=3 uid="uid://dqppcyvd47qyc"]
+
+[ext_resource type="Script" uid="uid://bfcnay3odbjv6" path="res://Skills/passive_skill.gd" id="1_8b726"]
+
+[resource]
+script = ExtResource("1_8b726")
+skill_name = "Dark Rise"
+description = "The awakening of the abyss. It drowns the battlefield in shadows, corrupting the enemy's blood while gorging on dark mana.
+3x All battle stats 
+150 Poison Per Sec
+150 Bleed Per Sec"
+rarity = 3
+inner_strength_mult = 3.0
+outer_strength_mult = 3.0
+toughness_mult = 3.0
+dark_mana_gain_mult = 3.0
+poison_dmg_per_sec = 150.0
+bleed_dmg_per_sec = 150.0
+metadata/_custom_type_script = "uid://bfcnay3odbjv6"

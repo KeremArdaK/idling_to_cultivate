@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="PassiveSkill" format=3 uid="uid://cgs3s2bj4v1qn"]
+
+[ext_resource type="Script" uid="uid://bfcnay3odbjv6" path="res://Skills/passive_skill.gd" id="1_1ceyo"]
+
+[resource]
+script = ExtResource("1_1ceyo")
+skill_name = "Dark Ink Style"
+description = "A fluid combat art that toxifies the enemy with every graceful evasion.
+1.3x Toughness
+10 Poison Per Second"
+rarity = 1
+toughness_mult = 1.3
+poison_dmg_per_sec = 10.0
+metadata/_custom_type_script = "uid://bfcnay3odbjv6"

@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="PassiveSkill" format=3 uid="uid://b43jm3kkadn5c"]
+
+[ext_resource type="Script" uid="uid://bfcnay3odbjv6" path="res://Skills/passive_skill.gd" id="1_8oatm"]
+
+[resource]
+script = ExtResource("1_8oatm")
+skill_name = "Soul Linking"
+description = "A dark-energy conduit that tethers the souls of the fallen directly to you, feeding the system with their lingering essence.
+0.9 InnerSTR
+2.5 Dark Mana Gain
+%20 Lifesteal"
+rarity = 2
+inner_strength_mult = 0.9
+dark_mana_gain_mult = 2.5
+life_steal_percent = 20.0
+metadata/_custom_type_script = "uid://bfcnay3odbjv6"

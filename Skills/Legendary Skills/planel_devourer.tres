@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="PassiveSkill" format=3 uid="uid://cn4j3cyrigot0"]
+
+[ext_resource type="Script" uid="uid://bfcnay3odbjv6" path="res://Skills/passive_skill.gd" id="1_dkiyd"]
+
+[resource]
+script = ExtResource("1_dkiyd")
+skill_name = "Planet Devourer"
+description = "A cosmic hunger that swallows celestial bodies whole. It turns the enemy's life force into your own endless, crushing mass.
+0.5 InnerSTR
+8 Toughness
+%50 Lifesteal"
+rarity = 3
+inner_strength_mult = 0.5
+outer_strength_mult = 0.0
+toughness_mult = 8.0
+dark_mana_gain_mult = 0.0
+life_steal_percent = 50.0
+metadata/_custom_type_script = "uid://bfcnay3odbjv6"

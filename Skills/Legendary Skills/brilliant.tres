@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="PassiveSkill" format=3 uid="uid://brb1vcwhsnxdm"]
+
+[ext_resource type="Script" uid="uid://bfcnay3odbjv6" path="res://Skills/passive_skill.gd" id="1_ybloc"]
+
+[resource]
+script = ExtResource("1_ybloc")
+skill_name = "Brilliant"
+description = "A light so blinding and fierce that it incinerates the unworthy. Speed and heat pushed to the absolute pinnacle of existence.
+25x InnerSTR
+250 Burn Per Second"
+rarity = 3
+inner_strength_mult = 25.0
+burn_dmg_per_sec = 250.0
+metadata/_custom_type_script = "uid://bfcnay3odbjv6"

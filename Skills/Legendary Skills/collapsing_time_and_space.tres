@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="PassiveSkill" format=3 uid="uid://8y24doxq0rur"]
+
+[ext_resource type="Script" uid="uid://bfcnay3odbjv6" path="res://Skills/passive_skill.gd" id="1_yrqul"]
+
+[resource]
+script = ExtResource("1_yrqul")
+skill_name = "Collapsing Time And Space"
+description = "Reality bends and rots around you. Time accelerates and space compresses, crushing the enemy under the weight of existence itself
+You can't attack.
+15x Toughness
+2500 Poison Per Sec. Highest DoT in the game."
+rarity = 3
+inner_strength_mult = 0.0
+outer_strength_mult = 0.0
+toughness_mult = 15.0
+poison_dmg_per_sec = 2500.0
+metadata/_custom_type_script = "uid://bfcnay3odbjv6"

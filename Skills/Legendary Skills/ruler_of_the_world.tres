@@ -5,15 +5,11 @@
 [resource]
 script = ExtResource("1_klxhw")
 skill_name = "Ruler of The World"
-description = "You rule the world now. 
-
-This skill enhances your all four stats by 5."
+description = "Absolute authority over the mortal realm. A perfect, unwavering balance that commands submission from all living things.
+3.5x All Battle Stats"
 rarity = 3
-inner_strength_mult = 5.0
-outer_strength_mult = 5.0
-toughness_mult = 5.0
-dark_mana_gain_mult = 5.0
-poison_dmg_per_sec = 5.0
-burn_dmg_per_sec = 5.0
-bleed_dmg_per_sec = 5.0
+inner_strength_mult = 3.5
+outer_strength_mult = 3.5
+toughness_mult = 3.5
+dark_mana_gain_mult = 3.5
 metadata/_custom_type_script = "uid://bfcnay3odbjv6"

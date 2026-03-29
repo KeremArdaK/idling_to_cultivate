@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="PassiveSkill" format=3 uid="uid://3j67unf8e4tk"]
+
+[ext_resource type="Script" uid="uid://bfcnay3odbjv6" path="res://Skills/passive_skill.gd" id="1_eybla"]
+
+[resource]
+script = ExtResource("1_eybla")
+skill_name = "Splitting Heavens"
+description = "A single, cataclysmic strike meant to sever the sky. It sacrifices all defense for one world-ending blow.
+0.3 Toughness
+12 Outer Strength"
+rarity = 3
+outer_strength_mult = 12.0
+toughness_mult = 0.3
+poison_dmg_per_sec = 1.0
+burn_dmg_per_sec = 1.0
+bleed_dmg_per_sec = 1.0
+metadata/_custom_type_script = "uid://bfcnay3odbjv6"
