@@ -1,12 +1,13 @@
 extends Node
 
+var suffixes = ["","K","M","B","T","Qa","Qi","Sx","Sp","Oc","No","Dc","Ud","Dd","Td"]
 var player_inv: Inventory = preload("res://Player/players_inventory.tres")
-var total_dark_mana: int = 1000
+var total_dark_mana: float = 1000.0
 var current_floor: int = 1
 var enemies_defeated: int = 0
-var roll_cost: int = 100
+var roll_cost: float = 100.0
 var total_enemies_defeated: int = 0
-var total_life_steal: int = 0
+var total_life_steal: float = 0.0
 var total_poison_dmg: float = 0.0
 var total_burn_dmg: float = 0.0
 var total_bleed_dmg: float = 0.0
@@ -43,6 +44,8 @@ func calculate_combat_stats() -> void:
 	total_bleed_dmg = 0.0
 	total_burn_dmg = 0.0
 	total_poison_dmg = 0.0
+	total_life_steal = 0.0
+	
 	#çantadaki aktif yetenekleri tek tek oku ve gücü arttır
 	for skill in player_inv.equipped_skills:
 		inner_str *= skill.inner_strength_mult
@@ -52,6 +55,7 @@ func calculate_combat_stats() -> void:
 		total_bleed_dmg += skill.bleed_dmg_per_sec
 		total_burn_dmg += skill.burn_dmg_per_sec
 		total_poison_dmg += skill.poison_dmg_per_sec
+		total_life_steal += skill.life_steal_percent
 		
 	min_damage = 50.0 + (inner_str * 0.5)
 	attack_speed = 20.0 + (inner_str * 0.2)
@@ -63,7 +67,21 @@ func calculate_combat_stats() -> void:
 	max_hp = 100.0 + (outer_str * 5.0) + (bamt * 15.0)
 	hp_regen = bamt * 0.2
 	damage_reduction = clamp(bamt * 0.4, 0.0, 85.0)
+
+func format_number(value: float) -> String:
+	# Eğer sayı 1000'den küçükse hiç elleme, düz yaz
+	if value < 1000.0:
+		return str(round(value))
+		
+	var index = 0
+	var temp_value = value
 	
-	
+	# sayıyı 1000'e bölebildiğimiz kadar bölüp, index'i arttırıyoruz
+	while temp_value >= 1000.0 and index < suffixes.size() - 1:
+		temp_value /= 1000.0
+		index += 1
+		
+	# virgülden sonra iki basamak gösterir (Örn: 1.25M veya 34.50T)
+	return "%.2f%s" % [temp_value, suffixes[index]]
 	
 	

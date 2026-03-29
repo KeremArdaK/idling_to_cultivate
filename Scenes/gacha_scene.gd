@@ -40,9 +40,9 @@ func load_all_skills(path: String = "res://Skills/"):
 			print(all_skills.size(), " adet yetenek alt klasörler de dahil başarıyla sunağa yüklendi.")
 func update_ui():
 	
-	mana_label.text = "Total Dark Mana: " + str(Globals.total_dark_mana)
+	mana_label.text = "Total Dark Mana: " + Globals.format_number(Globals.total_dark_mana)
 	btn_roll.disabled = Globals.total_dark_mana < Globals.roll_cost
-	btn_roll.text = "Roll a Skill " + str(Globals.roll_cost) + " Dark Mana"
+	btn_roll.text = "Roll a Skill " + Globals.format_number(Globals.roll_cost) + " Dark Mana"
 
 
 

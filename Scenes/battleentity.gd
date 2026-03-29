@@ -23,7 +23,7 @@ func _ready() -> void:
 func update_hp_ui() -> void:
 	hp_bar.max_value = max_hp
 	hp_bar.value = current_hp
-	hp_label.text = str(round(current_hp)) + " / " + str(round(max_hp))
+	hp_label.text = Globals.format_number(round(current_hp)) + " / " + Globals.format_number(round(max_hp))
 	
 func take_damage(amount:float) -> void:
 	current_hp -= amount

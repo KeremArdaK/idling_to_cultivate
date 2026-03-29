@@ -70,9 +70,9 @@ func setup_arena() -> void:
 	update_stats_ui()
 
 func update_stats_ui():
-	lbl_dmg.text = "Damage: " + str(round(Globals.min_damage)) + " - " + str(round(Globals.max_damage))
+	lbl_dmg.text = "Damage: " + Globals.format_number(round(Globals.min_damage)) + " - " + Globals.format_number(round(Globals.max_damage))
 	lbl_speed.text = "Attack Speed: " + str(round(Globals.attack_speed))
-	lbl_hp.text = "Maximum Health: " + str(round(Globals.max_hp))
+	lbl_hp.text = "Maximum Health: " + Globals.format_number(round(Globals.max_hp))
 	lbl_crit.text = "Crit Chance: " + str(round(Globals.crit_chance))
 	lbl_block.text = "Block Chance: " + str(round(Globals.block_chance))
 	lbl_dr.text = "Damage Reduction: " + str(round(Globals.damage_reduction))
@@ -202,7 +202,7 @@ func execute_attack(attacker, defender, is_player:bool) -> void:
 				player_entity.current_hp = player_entity.max_hp
 				var indicator = preload("res://Scenes/damage_indicator.tscn").instantiate()
 				player_entity.add_child(indicator)
-				indicator.setup(str(round(heal_amount)), false, true)
+				indicator.setup(Globals.format_number(round(heal_amount)), false, true)
 			player_entity.update_hp_ui()
 	else:
 		#düşman vuruyorsa
@@ -221,13 +221,13 @@ func execute_attack(attacker, defender, is_player:bool) -> void:
 		defender.take_damage(final_damage)
 		var indicator = preload("res://Scenes/damage_indicator.tscn").instantiate()
 		defender.add_child(indicator)
-		indicator.setup(str(round(final_damage)), is_crit)
+		indicator.setup(Globals.format_number(round(final_damage)), is_crit)
 	check_death(defender)
 		
 	is_combat_paused = false
 
 func update_ui() -> void:
-	label_dark_mana.text = "Dark Mana: " + str(Globals.total_dark_mana)
+	label_dark_mana.text = "Dark Mana: " + Globals.format_number(Globals.total_dark_mana)
 	label_enemy_count.text = "Enemy: " + str(Globals.enemies_defeated + 1) + "/" + str(ENEMIES_PER_FLOOR)
 	label_floor.text = "Floor: " + str(Globals.current_floor)
 

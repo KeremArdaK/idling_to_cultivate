@@ -17,3 +17,4 @@ enum Rarity { COMMON, RARE, EPIC, LEGENDARY }
 @export var poison_dmg_per_sec: float = 0.0
 @export var burn_dmg_per_sec: float = 0.0
 @export var bleed_dmg_per_sec: float = 0.0
+@export var life_steal_percent: float = 0.0
