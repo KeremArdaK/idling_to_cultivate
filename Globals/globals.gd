@@ -6,7 +6,10 @@ var current_floor: int = 1
 var enemies_defeated: int = 0
 var roll_cost: int = 100
 var total_enemies_defeated: int = 0
-
+var total_life_steal: int = 0
+var total_poison_dmg: float = 0.0
+var total_burn_dmg: float = 0.0
+var total_bleed_dmg: float = 0.0
 #base statlar
 var base_inner_str: float = 10.0
 var base_outer_str: float = 10.0
@@ -37,12 +40,19 @@ func calculate_combat_stats() -> void:
 	outer_str = base_outer_str
 	bamt = base_bamt
 	dark_mana_gain_multiplier = 1.0
+	total_bleed_dmg = 0.0
+	total_burn_dmg = 0.0
+	total_poison_dmg = 0.0
 	#çantadaki aktif yetenekleri tek tek oku ve gücü arttır
 	for skill in player_inv.equipped_skills:
 		inner_str *= skill.inner_strength_mult
 		outer_str *= skill.outer_strength_mult
 		bamt *= skill.toughness_mult
 		dark_mana_gain_multiplier *= skill.dark_mana_gain_mult
+		total_bleed_dmg += skill.bleed_dmg_per_sec
+		total_burn_dmg += skill.burn_dmg_per_sec
+		total_poison_dmg += skill.poison_dmg_per_sec
+		
 	min_damage = 50.0 + (inner_str * 0.5)
 	attack_speed = 20.0 + (inner_str * 0.2)
 	crit_chance = clamp(inner_str * 0.5, 0.0, 100.0)

@@ -2,8 +2,12 @@ extends Node2D
 
 @onready var label = $Label
 
-func setup(damage_amount: String, is_crit: bool = false):
-	label.text = damage_amount
+func setup(amount_text: String, is_crit: bool = false, is_heal:bool = false):
+	label.text = amount_text
+	
+	if is_heal:
+		label.text = "+" + amount_text
+		label.modulate = Color.GREEN
 	if is_crit:
 		label.modulate = Color.RED
 		label.scale = Vector2(1.5, 1.5)

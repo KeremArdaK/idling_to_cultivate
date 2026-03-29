@@ -97,6 +97,20 @@ func spawn_new_enemy() -> void:
 	enemy_entity.character_texture.flip_h = true
 	
 func _process(delta: float) -> void:
+	var total_dot_dmg = Globals.total_poison_dmg + Globals.total_burn_dmg + Globals.total_bleed_dmg
+	if not is_combat_paused and enemy_entity != null and total_dot_dmg > 0:
+		var dot_tick = total_dot_dmg * delta
+		enemy_entity.current_hp -= dot_tick
+		
+		if enemy_entity.current_hp <= 0:
+			enemy_entity.current_hp = 0
+			enemy_entity.update_hp_ui()
+			
+			is_combat_paused = true
+			check_death(enemy_entity)
+			is_combat_paused = false
+		else:
+			enemy_entity.update_hp_ui()
 	update_stats_ui()
 	
 	player_entity.max_hp = Globals.max_hp
@@ -156,6 +170,16 @@ func execute_attack(attacker, defender, is_player:bool) -> void:
 			print("Critical Hit!")
 		final_damage = base_dmg
 		shake_strength = 20.0 if is_crit else 10.0
+		var heal_amount = final_damage * (Globals.total_life_steal / 100.0)
+		
+		if heal_amount > 0 and player_entity.current_hp < player_entity.max_hp:
+			player_entity.current_hp += heal_amount
+			if player_entity.current_hp > player_entity.max_hp:
+				player_entity.current_hp = player_entity.max_hp
+				var indicator = preload("res://Scenes/damage_indicator.tscn").instantiate()
+				player_entity.add_child(indicator)
+				indicator.setup(str(round(heal_amount)), false, true)
+			player_entity.update_hp_ui()
 	else:
 		#düşman vuruyorsa
 		var enemy_base_dmg = 10.0 + (Globals.current_floor * 5.0)
@@ -174,7 +198,16 @@ func execute_attack(attacker, defender, is_player:bool) -> void:
 		var indicator = preload("res://Scenes/damage_indicator.tscn").instantiate()
 		defender.add_child(indicator)
 		indicator.setup(str(round(final_damage)), is_crit)
-	#death check
+	check_death(defender)
+		
+	is_combat_paused = false
+
+func update_ui() -> void:
+	label_dark_mana.text = "Dark Mana: " + str(Globals.total_dark_mana)
+	label_enemy_count.text = "Enemy: " + str(Globals.enemies_defeated + 1) + "/" + str(ENEMIES_PER_FLOOR)
+	label_floor.text = "Floor: " + str(Globals.current_floor)
+
+func check_death(defender) -> void:
 	if defender.current_hp <= 0:
 		if defender == player_entity:
 			print("ÖLDÜN!")
@@ -190,21 +223,10 @@ func execute_attack(attacker, defender, is_player:bool) -> void:
 			var earned_mana = Globals.total_enemies_defeated + 1 
 			Globals.total_dark_mana += round(earned_mana * Globals.dark_mana_gain_multiplier)
 			print("Toplam Kara Mana:", Globals.total_dark_mana, "| Kazanılan Mana:", str(round(earned_mana * Globals.dark_mana_gain_multiplier)))
+			spawn_new_enemy()
 			
 			if Globals.enemies_defeated > ENEMIES_PER_FLOOR - 1:
 				Globals.current_floor += 1
 				Globals.enemies_defeated = 0
 				print("KATA HÜKMETTİN. Yeni Kat: ", Globals.current_floor)
-			
-			spawn_new_enemy()
-			
-		player_entity.atb = 0.0
-		enemy_entity.atb = 0.0
-		update_ui()
-		
-	is_combat_paused = false
-
-func update_ui() -> void:
-	label_dark_mana.text = "Dark Mana: " + str(Globals.total_dark_mana)
-	label_enemy_count.text = "Enemy: " + str(Globals.enemies_defeated + 1) + "/" + str(ENEMIES_PER_FLOOR)
-	label_floor.text = "Floor: " + str(Globals.current_floor)
+				
