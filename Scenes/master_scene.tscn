@@ -35,9 +35,10 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-current_tab = 0
+current_tab = 2
 
 [node name="BattleScene" parent="TabContainer" unique_id=1601488368 instance=ExtResource("1_hytem")]
+visible = false
 layout_mode = 2
 metadata/_tab_index = 0
 
@@ -137,6 +138,7 @@ text = ""
 text = ""
 
 [node name="InventoryScene" parent="TabContainer" unique_id=2104135749 instance=ExtResource("5_j1osf")]
+visible = true
 layout_mode = 2
 metadata/_tab_index = 2
 
@@ -148,11 +150,14 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Btn_Equip" parent="TabContainer/InventoryScene/Control/HBoxContainer/RightPanel_40" parent_id_path=PackedInt32Array(2104135749, 976169937) index="4" unique_id=920074620]
+[node name="SkillLblStats" type="Label" parent="TabContainer/InventoryScene/Control/HBoxContainer/RightPanel_40" parent_id_path=PackedInt32Array(2104135749, 976169937) index="4" unique_id=2083417276]
+layout_mode = 2
+
+[node name="Btn_Equip" parent="TabContainer/InventoryScene/Control/HBoxContainer/RightPanel_40" parent_id_path=PackedInt32Array(2104135749, 976169937) index="5" unique_id=920074620]
 custom_minimum_size = Vector2(0, 50)
 size_flags_stretch_ratio = 1.5
 
-[node name="Btn_Unequip" parent="TabContainer/InventoryScene/Control/HBoxContainer/RightPanel_40" parent_id_path=PackedInt32Array(2104135749, 976169937) index="5" unique_id=352563541]
+[node name="Btn_Unequip" parent="TabContainer/InventoryScene/Control/HBoxContainer/RightPanel_40" parent_id_path=PackedInt32Array(2104135749, 976169937) index="6" unique_id=352563541]
 custom_minimum_size = Vector2(0, 50)
 
 [node name="SettingsScene" type="Control" parent="TabContainer" unique_id=1998132190]

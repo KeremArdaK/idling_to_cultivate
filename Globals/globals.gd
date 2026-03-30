@@ -104,4 +104,36 @@ func format_number(value: float) -> String:
 	# virgülden sonra iki basamak gösterir (Örn: 1.25M veya 34.50T)
 	return "%.2f%s" % [temp_value, suffixes[index]]
 	
+# Bu fonksiyon, parametre olarak verilen yetenek kuşanılırsa statların ne olacağını tahmin eder.
+func get_projected_stats(new_skill: PassiveSkill) -> Dictionary:
+	# 1. Temel statları geçici değişkenlere al (Dark mana yükseltmeleri dahil)
+	var p_inner = base_inner_str + (dark_mana_upgrades["base_inner_str"] * 5.0)
+	var p_outer = base_outer_str + (dark_mana_upgrades["base_outer_str"] * 5.0)
+	var p_bamt = base_bamt + (dark_mana_upgrades["base_bamt"] * 5.0)
 	
+	# 2. Çantanın sahte bir kopyasını oluştur
+	var sim_skills = player_inv.equipped_skills.duplicate()
+	
+	# Eğer bu yetenek zaten kuşanılmışsa statlar değişmez, aynısını döndür
+	if sim_skills.has(new_skill):
+		return {"inner_str": inner_str, "outer_str": outer_str, "bamt": bamt}
+	
+	# Eğer slotlar doluysa, gerçeğinde olduğu gibi ilk yeteneği simülasyondan çıkar
+	if sim_skills.size() >= player_inv.max_equip_slots:
+		sim_skills.pop_front()
+		
+	# Yeni yeteneği simülasyona ekle
+	sim_skills.append(new_skill)
+	
+	# 3. Yeni komboya göre çarpanları uygula
+	for skill in sim_skills:
+		p_inner *= skill.inner_strength_mult
+		p_outer *= skill.outer_strength_mult
+		p_bamt *= skill.toughness_mult
+		
+	# 4. Sonuçları bir Sözlük (Dictionary) olarak raporla
+	return {
+		"inner_str": p_inner,
+		"outer_str": p_outer,
+		"bamt": p_bamt
+	}

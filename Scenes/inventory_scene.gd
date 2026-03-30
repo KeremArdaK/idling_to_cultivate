@@ -54,16 +54,19 @@ func refresh_inventory_ui():
 
 func _on_btn_equip_pressed():
 	if selected_skill and not Globals.player_inv.equipped_skills.has(selected_skill):
-		if Globals.player_inv.equipped_skills.size() < Globals.player_inv.max_equip_slots:
-			Globals.player_inv.equipped_skills.append(selected_skill)
-			
-			Globals.calculate_combat_stats()
-			
-			refresh_inventory_ui()
-			
-			_on_skill_btn_pressed(selected_skill) # Sağ paneli yenile
-		else:
-			print("Slotların Dolu! Önce birini çıkar.")
+		
+		# EĞER SLOTLAR DOLUYSA, İLK KUŞANILAN YETENEĞİ ÇIKAR (FIFO Mantığı)
+		if Globals.player_inv.equipped_skills.size() >= Globals.player_inv.max_equip_slots:
+			var removed_skill = Globals.player_inv.equipped_skills.pop_front()
+			print("Slot doluydu, çıkarılan yetenek: ", removed_skill.skill_name)
+		
+		# YENİ YETENEĞİ EKLE VE GÜCÜ HESAPLA
+		Globals.player_inv.equipped_skills.append(selected_skill)
+		Globals.calculate_combat_stats()
+		refresh_inventory_ui()
+		
+		# Paneli yeni duruma göre güncelle
+		_on_skill_btn_pressed(selected_skill)
 func _on_btn_unequip_pressed():
 	if selected_skill and Globals.player_inv.equipped_skills.has(selected_skill):
 		Globals.player_inv.equipped_skills.erase(selected_skill)
@@ -82,6 +85,29 @@ func _on_skill_btn_pressed(skill: PassiveSkill):
 	var rarity_texts = ["COMMON","RARE","EPIC","LEGENDARY"]
 	skill_rarity.text = rarity_texts[skill.rarity]
 	
+	# ---- BEFORE / AFTER STAT HESAPLAMASI ----
+	if not Globals.player_inv.equipped_skills.has(skill):
+		var proj = Globals.get_projected_stats(skill)
+		
+		# Değişim miktarını hesapla
+		var inner_diff = proj["inner_str"] - Globals.inner_str
+		
+		# Farkın pozitif/negatif olmasına göre renk/işaret ayarlayabilirsin
+		var sign_str = "+" if inner_diff >= 0 else ""
+		
+		# Arayüzdeki (varsayımsal) stat etiketine yazdır
+		# Arayüzde $Control/HBoxContainer/RightPanel_40/SkillLblStats adında bir Label olmalı!
+		$Control/HBoxContainer/RightPanel_40/SkillLblStats.text = "Inner STR: %s -> %s (%s%s)" % [
+			Globals.format_number(Globals.inner_str), 
+			Globals.format_number(proj["inner_str"]), 
+			sign_str, 
+			Globals.format_number(inner_diff)
+		]
+	else:
+		# Zaten kuşanılmışsa projeksiyon yapma
+		$Control/HBoxContainer/RightPanel_40/SkillLblStats.text = "Şu Anki Inner STR: " + Globals.format_number(Globals.inner_str)
+	# -----------------------------------------
+
 	if Globals.player_inv.equipped_skills.has(skill):
 		btn_equip.visible = false
 		btn_unequip.visible = true
