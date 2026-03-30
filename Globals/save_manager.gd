@@ -20,6 +20,8 @@ func save_game() -> void:
 	current_save.enemies_defeated = Globals.enemies_defeated
 	current_save.roll_cost = Globals.roll_cost
 	current_save.total_enemies_defeated = Globals.total_enemies_defeated
+	current_save.soul_fragments = Globals.soul_fragments
+	current_save.prestige_upgrades = Globals.prestige_upgrades
 	#şablonu diske yazdır
 	ResourceSaver.save(current_save, SAVE_PATH)
 	print("Başarıyla kaydedildi.")
@@ -64,3 +66,27 @@ func _notification(what: int) -> void:
 	if what == NOTIFICATION_WM_CLOSE_REQUEST:
 		save_game()
 		get_tree().quit()
+
+func do_prestige() -> void:
+	# 1. Kazanılacak ruh parçalarını hesapla (Örn: Her 5 kat için 1 parça)
+	var gained_fragments = floor(Globals.current_floor / 5.0)
+	
+	if gained_fragments <= 0:
+		print("Evreni yakmak için yeterince ileri gitmedin. En az 5. kata ulaşmalısın.")
+		return
+		
+	# 2. Ruh parçalarını evrensel hafızaya ekle
+	Globals.soul_fragments += gained_fragments
+	print("Kıyamet koptu. Kazanılan Ruh Parçası: ", gained_fragments)
+	
+	# 3. GEÇİCİ HER ŞEYİ SİL (Hard reset mantığı)
+	Globals.total_dark_mana = 1000.0
+	Globals.current_floor = 1
+	Globals.enemies_defeated = 0
+	Globals.roll_cost = 100.0
+	Globals.player_inv.unlocked_skills.clear()
+	Globals.player_inv.equipped_skills.clear()
+	
+	# 4. Kaydet ve Evreni Baştan Başlat
+	save_game()
+	get_tree().reload_current_scene()

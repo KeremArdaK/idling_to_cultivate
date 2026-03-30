@@ -1,5 +1,11 @@
 extends Node
 
+var dark_mana_upgrades: Dictionary = {
+	"base_inner_str": 0,
+	"base_outer_str": 0,
+	"base_bamt": 0
+}
+
 var suffixes = ["","K","M","B","T","Qa","Qi","Sx","Sp","Oc","No","Dc","Ud","Dd","Td"]
 var player_inv: Inventory = preload("res://Player/players_inventory.tres")
 var total_dark_mana: float = 1000.0
@@ -7,6 +13,15 @@ var current_floor: int = 1
 var enemies_defeated: int = 0
 var roll_cost: float = 100.0
 var total_enemies_defeated: int = 0
+
+var soul_fragments: float = 0.0
+var prestige_dmg_mult: float = 0.0
+var prestige_health_mult: float = 0.0
+var prestige_upgrades: Dictionary = {
+	"pure_strength": 0,
+	"immortal_flesh": 0
+}
+
 var total_life_steal: float = 0.0
 var total_poison_dmg: float = 0.0
 var total_burn_dmg: float = 0.0

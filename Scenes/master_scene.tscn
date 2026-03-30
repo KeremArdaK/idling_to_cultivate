@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dk44fsbk7vwyi" path="res://Scenes/gacha_scene.tscn" id="3_mgffv"]
 [ext_resource type="PackedScene" uid="uid://bg5wunapqtddh" path="res://Scenes/inventory_scene.tscn" id="5_j1osf"]
 [ext_resource type="Script" uid="uid://ccikn48uccylx" path="res://Scenes/save_load_scene.gd" id="6_0g3s7"]
+[ext_resource type="Script" uid="uid://b4i0gnnl3tkr8" path="res://Scenes/info_scene.gd" id="6_qdv3q"]
 
 [node name="MasterScene" type="Control" unique_id=987181421]
 layout_mode = 3
@@ -207,14 +208,49 @@ grow_vertical = 2
 [node name="InfoScene" type="Control" parent="MainVBox/MarginContainer" unique_id=2080260933]
 visible = false
 layout_mode = 2
+script = ExtResource("6_qdv3q")
 
-[node name="PanelContainer" type="PanelContainer" parent="MainVBox/MarginContainer/InfoScene" unique_id=1956111225]
+[node name="PanelContainer" type="PanelContainer" parent="MainVBox/MarginContainer/InfoScene" unique_id=1610114679]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainVBox/MarginContainer/InfoScene/PanelContainer" unique_id=617828478]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="MainVBox/MarginContainer/InfoScene/PanelContainer/VBoxContainer" unique_id=1078462239]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Total Defeated Enemy"
+
+[node name="Label2" type="Label" parent="MainVBox/MarginContainer/InfoScene/PanelContainer/VBoxContainer" unique_id=629239404]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Total Defeated Enemy"
+
+[node name="Label3" type="Label" parent="MainVBox/MarginContainer/InfoScene/PanelContainer/VBoxContainer" unique_id=1910158223]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Total Defeated Enemy"
+
+[node name="Label4" type="Label" parent="MainVBox/MarginContainer/InfoScene/PanelContainer/VBoxContainer" unique_id=671893180]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Total Defeated Enemy"
+
+[node name="Label5" type="Label" parent="MainVBox/MarginContainer/InfoScene/PanelContainer/VBoxContainer" unique_id=848153791]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Total Defeated Enemy"
+
+[node name="Label6" type="Label" parent="MainVBox/MarginContainer/InfoScene/PanelContainer/VBoxContainer" unique_id=1801343935]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Total Defeated Enemy"
 
 [node name="SaveLoadScene" type="Control" parent="MainVBox/MarginContainer" unique_id=1811301216]
 visible = false

@@ -8,3 +8,6 @@ extends Resource
 @export var enemies_defeated: int = 0
 @export var roll_cost: float = 100.0
 @export var total_enemies_defeated: int = 0
+@export var soul_fragments: float = 0.0
+@export var prestige_upgrades: Dictionary = {}
+@export var dark_mana_upgrades: Dictionary = {}
