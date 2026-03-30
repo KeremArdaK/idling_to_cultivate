@@ -2,11 +2,13 @@
 
 [ext_resource type="PackedScene" uid="uid://bt1sw4td63udd" path="res://Scenes/battlescene.tscn" id="1_hytem"]
 [ext_resource type="Theme" uid="uid://bj5rokak5d6t1" path="res://UI Theme/itoctheme.tres" id="1_j1osf"]
-[ext_resource type="Script" uid="uid://ccr3thq6of6cp" path="res://Scenes/master_scene.gd" id="1_mgffv"]
 [ext_resource type="PackedScene" uid="uid://dk44fsbk7vwyi" path="res://Scenes/gacha_scene.tscn" id="3_mgffv"]
 [ext_resource type="PackedScene" uid="uid://bg5wunapqtddh" path="res://Scenes/inventory_scene.tscn" id="5_j1osf"]
 [ext_resource type="Script" uid="uid://ccikn48uccylx" path="res://Scenes/save_load_scene.gd" id="6_0g3s7"]
 [ext_resource type="Script" uid="uid://b4i0gnnl3tkr8" path="res://Scenes/info_scene.gd" id="6_qdv3q"]
+[ext_resource type="Script" uid="uid://f6atolrjwbla" path="res://Scenes/prestige_scene.gd" id="8_qdv3q"]
+
+[sub_resource type="GDScript" id="GDScript_0g3s7"]
 
 [node name="MasterScene" type="Control" unique_id=987181421]
 layout_mode = 3
@@ -16,7 +18,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_j1osf")
-script = ExtResource("1_mgffv")
+script = SubResource("GDScript_0g3s7")
 
 [node name="MainVBox" type="VBoxContainer" parent="." unique_id=338501794]
 layout_mode = 1
@@ -26,79 +28,49 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="PanelContainer" type="PanelContainer" parent="MainVBox" unique_id=1887811305]
-layout_mode = 2
+[node name="TabContainer" type="TabContainer" parent="." unique_id=736024684]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+current_tab = 0
 
-[node name="TopNavBar" type="HBoxContainer" parent="MainVBox/PanelContainer" unique_id=386602944]
+[node name="BattleScene" parent="TabContainer" unique_id=1601488368 instance=ExtResource("1_hytem")]
 layout_mode = 2
-theme_override_constants/separation = 15
+metadata/_tab_index = 0
 
-[node name="Btn_Battle" type="Button" parent="MainVBox/PanelContainer/TopNavBar" unique_id=819451783]
-layout_mode = 2
-theme_override_font_sizes/font_size = 30
-text = "BATTLE
-"
-
-[node name="Btn_Gacha" type="Button" parent="MainVBox/PanelContainer/TopNavBar" unique_id=14920798]
-layout_mode = 2
-theme_override_font_sizes/font_size = 30
-text = "GACHA"
-
-[node name="Btn_Inv" type="Button" parent="MainVBox/PanelContainer/TopNavBar" unique_id=583540087]
-layout_mode = 2
-theme_override_font_sizes/font_size = 30
-text = "INVENTORY"
-
-[node name="Btn_Prestige" type="Button" parent="MainVBox/PanelContainer/TopNavBar" unique_id=1403224923]
-layout_mode = 2
-theme_override_font_sizes/font_size = 30
-text = "PRESTIGE"
-
-[node name="Btn_Skills" type="Button" parent="MainVBox/PanelContainer/TopNavBar" unique_id=1739591713]
-layout_mode = 2
-theme_override_font_sizes/font_size = 30
-text = "SKILLS"
-
-[node name="Btn_Story" type="Button" parent="MainVBox/PanelContainer/TopNavBar" unique_id=1936245877]
-layout_mode = 2
-theme_override_font_sizes/font_size = 30
-text = "STORY"
-
-[node name="Btn_Info" type="Button" parent="MainVBox/PanelContainer/TopNavBar" unique_id=1813953803]
-layout_mode = 2
-theme_override_font_sizes/font_size = 30
-text = "INFO"
-
-[node name="Btn_SaveLoad" type="Button" parent="MainVBox/PanelContainer/TopNavBar" unique_id=459428730]
-layout_mode = 2
-theme_override_font_sizes/font_size = 30
-text = "SAVE/LOAD"
-
-[node name="Btn_Settings" type="Button" parent="MainVBox/PanelContainer/TopNavBar" unique_id=1551938864]
-layout_mode = 2
-theme_override_font_sizes/font_size = 30
-text = "SETTINGS"
-
-[node name="MarginContainer" type="MarginContainer" parent="MainVBox" unique_id=1934168225]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="BattleScene" parent="MainVBox/MarginContainer" unique_id=1601488368 instance=ExtResource("1_hytem")]
-layout_mode = 2
-
-[node name="EnemyNameLabel" type="Label" parent="MainVBox/MarginContainer/BattleScene/HBoxContainer/LeftSide/LeftBottomPanel/VBoxContainer" parent_id_path=PackedInt32Array(1601488368, 682375385) index="0" unique_id=1309138604]
+[node name="EnemyNameLabel" type="Label" parent="TabContainer/BattleScene/HBoxContainer/LeftSide/LeftBottomPanel/VBoxContainer" parent_id_path=PackedInt32Array(1601488368, 682375385) index="0" unique_id=1309138604]
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "enemyname"
 
-[node name="PanelContainer" parent="MainVBox/MarginContainer/BattleScene/HBoxContainer/RightSide/RightBottomPanel" parent_id_path=PackedInt32Array(1601488368, 1854535572) index="0" unique_id=1053352033]
+[node name="SoulFragmentsLbl" type="Label" parent="TabContainer/BattleScene/HBoxContainer/RightSide/RightTopPanel/VBoxContainer" parent_id_path=PackedInt32Array(1601488368, 179216575) index="1" unique_id=1714758357]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "dark mana"
+
+[node name="InnerSTR" parent="TabContainer/BattleScene/HBoxContainer/RightSide/RightTopPanel/VBoxContainer" parent_id_path=PackedInt32Array(1601488368, 179216575) index="2" unique_id=1618623472]
+size_flags_vertical = 3
+
+[node name="OuterSTR" parent="TabContainer/BattleScene/HBoxContainer/RightSide/RightTopPanel/VBoxContainer" parent_id_path=PackedInt32Array(1601488368, 179216575) index="3" unique_id=1001841585]
+size_flags_vertical = 3
+
+[node name="Toughness" parent="TabContainer/BattleScene/HBoxContainer/RightSide/RightTopPanel/VBoxContainer" parent_id_path=PackedInt32Array(1601488368, 179216575) index="4" unique_id=611055308]
+size_flags_vertical = 3
+
+[node name="AttackSpeed" parent="TabContainer/BattleScene/HBoxContainer/RightSide/RightTopPanel/VBoxContainer" parent_id_path=PackedInt32Array(1601488368, 179216575) index="5" unique_id=1696056613]
+size_flags_vertical = 3
+
+[node name="PanelContainer" parent="TabContainer/BattleScene/HBoxContainer/RightSide/RightBottomPanel" parent_id_path=PackedInt32Array(1601488368, 1854535572) index="0" unique_id=1053352033]
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="VBoxContainer" parent="MainVBox/MarginContainer/BattleScene/HBoxContainer/RightSide/RightBottomPanel/PanelContainer" index="0" unique_id=1433928653]
+[node name="VBoxContainer" parent="TabContainer/BattleScene/HBoxContainer/RightSide/RightBottomPanel/PanelContainer" index="0" unique_id=1433928653]
 theme_override_constants/separation = 15
 
-[node name="Lbl_Damage" type="Label" parent="MainVBox/MarginContainer/BattleScene/HBoxContainer/RightSide/RightBottomPanel/PanelContainer/VBoxContainer" index="0" unique_id=371657762]
+[node name="Lbl_Damage" type="Label" parent="TabContainer/BattleScene/HBoxContainer/RightSide/RightBottomPanel/PanelContainer/VBoxContainer" index="0" unique_id=371657762]
 layout_mode = 2
 size_flags_vertical = 6
 theme_override_constants/line_spacing = 10
@@ -106,7 +78,7 @@ theme_override_constants/outline_size = 5
 theme_override_font_sizes/font_size = 32
 text = "STRENGTH"
 
-[node name="Lbl_AS" type="Label" parent="MainVBox/MarginContainer/BattleScene/HBoxContainer/RightSide/RightBottomPanel/PanelContainer/VBoxContainer" index="1" unique_id=2061666674]
+[node name="Lbl_AS" type="Label" parent="TabContainer/BattleScene/HBoxContainer/RightSide/RightBottomPanel/PanelContainer/VBoxContainer" index="1" unique_id=2061666674]
 layout_mode = 2
 size_flags_vertical = 6
 theme_override_constants/line_spacing = 10
@@ -114,7 +86,7 @@ theme_override_constants/outline_size = 5
 theme_override_font_sizes/font_size = 32
 text = "STRENGTH"
 
-[node name="Lbl_Crit" type="Label" parent="MainVBox/MarginContainer/BattleScene/HBoxContainer/RightSide/RightBottomPanel/PanelContainer/VBoxContainer" index="2" unique_id=384166447]
+[node name="Lbl_Crit" type="Label" parent="TabContainer/BattleScene/HBoxContainer/RightSide/RightBottomPanel/PanelContainer/VBoxContainer" index="2" unique_id=384166447]
 layout_mode = 2
 size_flags_vertical = 6
 theme_override_constants/line_spacing = 10
@@ -122,7 +94,7 @@ theme_override_constants/outline_size = 5
 theme_override_font_sizes/font_size = 32
 text = "STRENGTH"
 
-[node name="Lbl_Block" type="Label" parent="MainVBox/MarginContainer/BattleScene/HBoxContainer/RightSide/RightBottomPanel/PanelContainer/VBoxContainer" index="3" unique_id=937319778]
+[node name="Lbl_Block" type="Label" parent="TabContainer/BattleScene/HBoxContainer/RightSide/RightBottomPanel/PanelContainer/VBoxContainer" index="3" unique_id=937319778]
 layout_mode = 2
 size_flags_vertical = 6
 theme_override_constants/line_spacing = 10
@@ -130,7 +102,7 @@ theme_override_constants/outline_size = 5
 theme_override_font_sizes/font_size = 32
 text = "STRENGTH"
 
-[node name="Lbl_HP" type="Label" parent="MainVBox/MarginContainer/BattleScene/HBoxContainer/RightSide/RightBottomPanel/PanelContainer/VBoxContainer" index="4" unique_id=710902093]
+[node name="Lbl_HP" type="Label" parent="TabContainer/BattleScene/HBoxContainer/RightSide/RightBottomPanel/PanelContainer/VBoxContainer" index="4" unique_id=710902093]
 layout_mode = 2
 size_flags_vertical = 6
 theme_override_constants/line_spacing = 10
@@ -138,7 +110,7 @@ theme_override_constants/outline_size = 5
 theme_override_font_sizes/font_size = 32
 text = "STRENGTH"
 
-[node name="Lbl_DR" type="Label" parent="MainVBox/MarginContainer/BattleScene/HBoxContainer/RightSide/RightBottomPanel/PanelContainer/VBoxContainer" index="5" unique_id=1136572678]
+[node name="Lbl_DR" type="Label" parent="TabContainer/BattleScene/HBoxContainer/RightSide/RightBottomPanel/PanelContainer/VBoxContainer" index="5" unique_id=1136572678]
 layout_mode = 2
 size_flags_vertical = 6
 theme_override_constants/line_spacing = 10
@@ -146,27 +118,29 @@ theme_override_constants/outline_size = 5
 theme_override_font_sizes/font_size = 32
 text = "STRENGTH"
 
-[node name="GachaScene" parent="MainVBox/MarginContainer" unique_id=269503989 instance=ExtResource("3_mgffv")]
+[node name="GachaScene" parent="TabContainer" unique_id=269503989 instance=ExtResource("3_mgffv")]
 visible = false
 layout_mode = 2
+metadata/_tab_index = 1
 
-[node name="TitleLabel" parent="MainVBox/MarginContainer/GachaScene/VBoxContainer" parent_id_path=PackedInt32Array(269503989, 412608158) index="0" unique_id=1414123643]
+[node name="TitleLabel" parent="TabContainer/GachaScene/VBoxContainer" parent_id_path=PackedInt32Array(269503989, 412608158) index="0" unique_id=1414123643]
 text = "WELCOME TO THE DARK ALTAR"
 
-[node name="ResultName" parent="MainVBox/MarginContainer/GachaScene/VBoxContainer/ResultPanel/VBoxContainer" parent_id_path=PackedInt32Array(269503989, 541080834) index="0" unique_id=1487231622]
+[node name="ResultName" parent="TabContainer/GachaScene/VBoxContainer/ResultPanel/VBoxContainer" parent_id_path=PackedInt32Array(269503989, 541080834) index="0" unique_id=1487231622]
 text = "
 "
 
-[node name="ResultRarity" parent="MainVBox/MarginContainer/GachaScene/VBoxContainer/ResultPanel/VBoxContainer" parent_id_path=PackedInt32Array(269503989, 541080834) index="1" unique_id=497029262]
+[node name="ResultRarity" parent="TabContainer/GachaScene/VBoxContainer/ResultPanel/VBoxContainer" parent_id_path=PackedInt32Array(269503989, 541080834) index="1" unique_id=497029262]
 text = ""
 
-[node name="ResultDesc" parent="MainVBox/MarginContainer/GachaScene/VBoxContainer/ResultPanel/VBoxContainer" parent_id_path=PackedInt32Array(269503989, 541080834) index="2" unique_id=1905794724]
+[node name="ResultDesc" parent="TabContainer/GachaScene/VBoxContainer/ResultPanel/VBoxContainer" parent_id_path=PackedInt32Array(269503989, 541080834) index="2" unique_id=1905794724]
 text = ""
 
-[node name="InventoryScene" parent="MainVBox/MarginContainer" unique_id=2104135749 instance=ExtResource("5_j1osf")]
+[node name="InventoryScene" parent="TabContainer" unique_id=2104135749 instance=ExtResource("5_j1osf")]
 layout_mode = 2
+metadata/_tab_index = 2
 
-[node name="PanelContainer" type="PanelContainer" parent="MainVBox/MarginContainer/InventoryScene/Control" parent_id_path=PackedInt32Array(2104135749, 484442162) index="0" unique_id=1666529325]
+[node name="PanelContainer" type="PanelContainer" parent="TabContainer/InventoryScene/Control" parent_id_path=PackedInt32Array(2104135749, 484442162) index="0" unique_id=1666529325]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -174,18 +148,19 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Btn_Equip" parent="MainVBox/MarginContainer/InventoryScene/Control/HBoxContainer/RightPanel_40" parent_id_path=PackedInt32Array(2104135749, 976169937) index="4" unique_id=920074620]
+[node name="Btn_Equip" parent="TabContainer/InventoryScene/Control/HBoxContainer/RightPanel_40" parent_id_path=PackedInt32Array(2104135749, 976169937) index="4" unique_id=920074620]
 custom_minimum_size = Vector2(0, 50)
 size_flags_stretch_ratio = 1.5
 
-[node name="Btn_Unequip" parent="MainVBox/MarginContainer/InventoryScene/Control/HBoxContainer/RightPanel_40" parent_id_path=PackedInt32Array(2104135749, 976169937) index="5" unique_id=352563541]
+[node name="Btn_Unequip" parent="TabContainer/InventoryScene/Control/HBoxContainer/RightPanel_40" parent_id_path=PackedInt32Array(2104135749, 976169937) index="5" unique_id=352563541]
 custom_minimum_size = Vector2(0, 50)
 
-[node name="SettingsScene" type="Control" parent="MainVBox/MarginContainer" unique_id=1998132190]
+[node name="SettingsScene" type="Control" parent="TabContainer" unique_id=1998132190]
 visible = false
 layout_mode = 2
+metadata/_tab_index = 3
 
-[node name="PanelContainer" type="PanelContainer" parent="MainVBox/MarginContainer/SettingsScene" unique_id=174176634]
+[node name="PanelContainer" type="PanelContainer" parent="TabContainer/SettingsScene" unique_id=174176634]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -193,11 +168,12 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="SkillsScene" type="Control" parent="MainVBox/MarginContainer" unique_id=1294019828]
+[node name="SkillsScene" type="Control" parent="TabContainer" unique_id=1294019828]
 visible = false
 layout_mode = 2
+metadata/_tab_index = 4
 
-[node name="PanelContainer" type="PanelContainer" parent="MainVBox/MarginContainer/SkillsScene" unique_id=816357359]
+[node name="PanelContainer" type="PanelContainer" parent="TabContainer/SkillsScene" unique_id=816357359]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -205,12 +181,13 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="InfoScene" type="Control" parent="MainVBox/MarginContainer" unique_id=2080260933]
+[node name="InfoScene" type="Control" parent="TabContainer" unique_id=2080260933]
 visible = false
 layout_mode = 2
 script = ExtResource("6_qdv3q")
+metadata/_tab_index = 5
 
-[node name="PanelContainer" type="PanelContainer" parent="MainVBox/MarginContainer/InfoScene" unique_id=1610114679]
+[node name="PanelContainer" type="PanelContainer" parent="TabContainer/InfoScene" unique_id=1610114679]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -218,46 +195,47 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MainVBox/MarginContainer/InfoScene/PanelContainer" unique_id=617828478]
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/InfoScene/PanelContainer" unique_id=617828478]
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="Label" type="Label" parent="MainVBox/MarginContainer/InfoScene/PanelContainer/VBoxContainer" unique_id=1078462239]
+[node name="Label" type="Label" parent="TabContainer/InfoScene/PanelContainer/VBoxContainer" unique_id=1078462239]
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
 text = "Total Defeated Enemy"
 
-[node name="Label2" type="Label" parent="MainVBox/MarginContainer/InfoScene/PanelContainer/VBoxContainer" unique_id=629239404]
+[node name="Label2" type="Label" parent="TabContainer/InfoScene/PanelContainer/VBoxContainer" unique_id=629239404]
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
 text = "Total Defeated Enemy"
 
-[node name="Label3" type="Label" parent="MainVBox/MarginContainer/InfoScene/PanelContainer/VBoxContainer" unique_id=1910158223]
+[node name="Label3" type="Label" parent="TabContainer/InfoScene/PanelContainer/VBoxContainer" unique_id=1910158223]
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
 text = "Total Defeated Enemy"
 
-[node name="Label4" type="Label" parent="MainVBox/MarginContainer/InfoScene/PanelContainer/VBoxContainer" unique_id=671893180]
+[node name="Label4" type="Label" parent="TabContainer/InfoScene/PanelContainer/VBoxContainer" unique_id=671893180]
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
 text = "Total Defeated Enemy"
 
-[node name="Label5" type="Label" parent="MainVBox/MarginContainer/InfoScene/PanelContainer/VBoxContainer" unique_id=848153791]
+[node name="Label5" type="Label" parent="TabContainer/InfoScene/PanelContainer/VBoxContainer" unique_id=848153791]
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
 text = "Total Defeated Enemy"
 
-[node name="Label6" type="Label" parent="MainVBox/MarginContainer/InfoScene/PanelContainer/VBoxContainer" unique_id=1801343935]
+[node name="Label6" type="Label" parent="TabContainer/InfoScene/PanelContainer/VBoxContainer" unique_id=1801343935]
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
 text = "Total Defeated Enemy"
 
-[node name="SaveLoadScene" type="Control" parent="MainVBox/MarginContainer" unique_id=1811301216]
+[node name="SaveLoadScene" type="Control" parent="TabContainer" unique_id=1811301216]
 visible = false
 layout_mode = 2
 script = ExtResource("6_0g3s7")
+metadata/_tab_index = 6
 
-[node name="PanelContainer" type="PanelContainer" parent="MainVBox/MarginContainer/SaveLoadScene" unique_id=2086495719]
+[node name="PanelContainer" type="PanelContainer" parent="TabContainer/SaveLoadScene" unique_id=2086495719]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -265,7 +243,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Button" type="Button" parent="MainVBox/MarginContainer/SaveLoadScene" unique_id=862189134]
+[node name="Button" type="Button" parent="TabContainer/SaveLoadScene" unique_id=862189134]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -281,7 +259,7 @@ grow_vertical = 2
 theme_override_font_sizes/font_size = 48
 text = "SAVE"
 
-[node name="LoadBtn" type="Button" parent="MainVBox/MarginContainer/SaveLoadScene" unique_id=190989281]
+[node name="LoadBtn" type="Button" parent="TabContainer/SaveLoadScene" unique_id=190989281]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -297,7 +275,7 @@ grow_vertical = 2
 theme_override_font_sizes/font_size = 48
 text = "LOAD"
 
-[node name="Button2" type="Button" parent="MainVBox/MarginContainer/SaveLoadScene" unique_id=1771591021]
+[node name="Button2" type="Button" parent="TabContainer/SaveLoadScene" unique_id=1771591021]
 layout_mode = 0
 offset_left = 623.0
 offset_top = 713.0
@@ -306,11 +284,13 @@ offset_bottom = 784.0
 theme_override_font_sizes/font_size = 48
 text = "HARD RESET"
 
-[node name="PrestigeScene" type="Control" parent="MainVBox/MarginContainer" unique_id=679963085]
+[node name="PrestigeScene" type="Control" parent="TabContainer" unique_id=679963085]
 visible = false
 layout_mode = 2
+script = ExtResource("8_qdv3q")
+metadata/_tab_index = 7
 
-[node name="PanelContainer" type="PanelContainer" parent="MainVBox/MarginContainer/PrestigeScene" unique_id=15193081]
+[node name="PanelContainer" type="PanelContainer" parent="TabContainer/PrestigeScene" unique_id=15193081]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -318,11 +298,26 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="StoryScene" type="Control" parent="MainVBox/MarginContainer" unique_id=2081972965]
-visible = false
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/PrestigeScene/PanelContainer" unique_id=185559459]
 layout_mode = 2
 
-[node name="PanelContainer" type="PanelContainer" parent="MainVBox/MarginContainer/StoryScene" unique_id=1436805489]
+[node name="CurrentDMLabel" type="Label" parent="TabContainer/PrestigeScene/PanelContainer/VBoxContainer" unique_id=1616280822]
+layout_mode = 2
+
+[node name="GainLabel" type="Label" parent="TabContainer/PrestigeScene/PanelContainer/VBoxContainer" unique_id=958808084]
+layout_mode = 2
+text = "123412412321"
+
+[node name="PrestigeButton" type="Button" parent="TabContainer/PrestigeScene/PanelContainer/VBoxContainer" unique_id=75494627]
+layout_mode = 2
+text = "PRESTIGE"
+
+[node name="StoryScene" type="Control" parent="TabContainer" unique_id=2081972965]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 8
+
+[node name="PanelContainer" type="PanelContainer" parent="TabContainer/StoryScene" unique_id=1436805489]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -330,19 +325,10 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[connection signal="pressed" from="MainVBox/PanelContainer/TopNavBar/Btn_Battle" to="." method="_on_btn_battle_pressed"]
-[connection signal="pressed" from="MainVBox/PanelContainer/TopNavBar/Btn_Gacha" to="." method="_on_btn_gacha_pressed"]
-[connection signal="pressed" from="MainVBox/PanelContainer/TopNavBar/Btn_Inv" to="." method="_on_btn_inv_pressed"]
-[connection signal="pressed" from="MainVBox/PanelContainer/TopNavBar/Btn_Prestige" to="." method="_on_btn_prestige_pressed"]
-[connection signal="pressed" from="MainVBox/PanelContainer/TopNavBar/Btn_Skills" to="." method="_on_btn_skills_pressed"]
-[connection signal="pressed" from="MainVBox/PanelContainer/TopNavBar/Btn_Story" to="." method="_on_btn_story_pressed"]
-[connection signal="pressed" from="MainVBox/PanelContainer/TopNavBar/Btn_Info" to="." method="_on_btn_info_pressed"]
-[connection signal="pressed" from="MainVBox/PanelContainer/TopNavBar/Btn_SaveLoad" to="." method="_on_btn_save_load_pressed"]
-[connection signal="pressed" from="MainVBox/PanelContainer/TopNavBar/Btn_Settings" to="." method="_on_btn_settings_pressed"]
-[connection signal="pressed" from="MainVBox/MarginContainer/SaveLoadScene/Button" to="MainVBox/MarginContainer/SaveLoadScene" method="_on_button_pressed"]
-[connection signal="pressed" from="MainVBox/MarginContainer/SaveLoadScene/LoadBtn" to="MainVBox/MarginContainer/SaveLoadScene" method="_on_load_btn_pressed"]
-[connection signal="pressed" from="MainVBox/MarginContainer/SaveLoadScene/Button2" to="MainVBox/MarginContainer/SaveLoadScene" method="_on_button_2_pressed"]
+[connection signal="pressed" from="TabContainer/SaveLoadScene/Button" to="TabContainer/SaveLoadScene" method="_on_button_pressed"]
+[connection signal="pressed" from="TabContainer/SaveLoadScene/LoadBtn" to="TabContainer/SaveLoadScene" method="_on_load_btn_pressed"]
+[connection signal="pressed" from="TabContainer/SaveLoadScene/Button2" to="TabContainer/SaveLoadScene" method="_on_button_2_pressed"]
 
-[editable path="MainVBox/MarginContainer/BattleScene"]
-[editable path="MainVBox/MarginContainer/GachaScene"]
-[editable path="MainVBox/MarginContainer/InventoryScene"]
+[editable path="TabContainer/BattleScene"]
+[editable path="TabContainer/GachaScene"]
+[editable path="TabContainer/InventoryScene"]

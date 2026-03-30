@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://hdpanssopsq1"]
+
+[ext_resource type="Script" uid="uid://cmh6pjep2dksy" path="res://Scenes/global_notifier.gd" id="1_o42bj"]
+
+[node name="GlobalNotifier" type="CanvasLayer" unique_id=827027801]
+script = ExtResource("1_o42bj")
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1693344321]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer" unique_id=1697367435]
+layout_mode = 2
+
+[node name="TitleLabel" type="Label" parent="PanelContainer/VBoxContainer" unique_id=1993340874]
+layout_mode = 2
+
+[node name="MessageLabel" type="Label" parent="PanelContainer/VBoxContainer" unique_id=344785643]
+layout_mode = 2

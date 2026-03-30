@@ -13,7 +13,7 @@ extends Control
 @onready var lbl_block =$HBoxContainer/RightSide/RightBottomPanel/PanelContainer/VBoxContainer/Lbl_Block
 @onready var lbl_hp = $HBoxContainer/RightSide/RightBottomPanel/PanelContainer/VBoxContainer/Lbl_HP
 @onready var lbl_dr = $HBoxContainer/RightSide/RightBottomPanel/PanelContainer/VBoxContainer/Lbl_DR
-
+@onready var lbl_soul_fragments = $HBoxContainer/RightSide/RightTopPanel/VBoxContainer/SoulFragmentsLbl
 #boss isimlerini oluşturmak için gereken değişkenler:
 var boss_first_name = ["Abyssal","Umbral","Hollow","Cursed","Veiled","Crimson","Shattered","Relentless","Ironbound","Feral","Primordial","Forsaken","Ethereal","Arcane"]
 var boss_last_name = ["Wraith","Banshee","Specter","Revenant","Wendigo","Chimera","Manticore","Behemoth","Lich","Nephilim","Creep","Golem"]
@@ -229,6 +229,7 @@ func execute_attack(attacker, defender, is_player:bool) -> void:
 	is_combat_paused = false
 
 func update_ui() -> void:
+	lbl_soul_fragments.text = "Soul Fragments: " + Globals.format_number(Globals.soul_fragments)
 	label_dark_mana.text = "Dark Mana: " + Globals.format_number(Globals.total_dark_mana)
 	label_enemy_count.text = "Enemy: " + str(Globals.enemies_defeated + 1) + "/" + str(ENEMIES_PER_FLOOR)
 	label_floor.text = "Floor: " + str(Globals.current_floor)

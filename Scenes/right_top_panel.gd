@@ -41,6 +41,7 @@ func buy_upgrade(stat_key: String) -> void:
 	
 	
 func update_all_ui() -> void:
+	
 	inner_str_btn.text = "Upgrade (" + Globals.format_number(get_cost("base_inner_str")) + ")"
 	inner_str_lbl.text = "Inner Strength"
 	outer_str_btn.text = "Upgrade (" + Globals.format_number(get_cost("base_outer_str")) + ")"
