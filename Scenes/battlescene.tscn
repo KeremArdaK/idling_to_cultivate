@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bt1sw4td63udd"]
 
 [ext_resource type="Script" uid="uid://sfdiqr1gy4pt" path="res://Scenes/battlescene.gd" id="1_06jng"]
+[ext_resource type="Script" uid="uid://b5iaenal8i6b4" path="res://Scenes/right_top_panel.gd" id="2_25ihy"]
 
 [node name="Control" type="Control" unique_id=1601488368]
 layout_mode = 3
@@ -65,6 +66,7 @@ size_flags_horizontal = 3
 [node name="RightTopPanel" type="PanelContainer" parent="HBoxContainer/RightSide" unique_id=1152253324]
 layout_mode = 2
 size_flags_vertical = 3
+script = ExtResource("2_25ihy")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/RightSide/RightTopPanel" unique_id=179216575]
 layout_mode = 2
@@ -73,6 +75,42 @@ layout_mode = 2
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "dark mana"
+
+[node name="InnerSTR" type="HBoxContainer" parent="HBoxContainer/RightSide/RightTopPanel/VBoxContainer" unique_id=1618623472]
+layout_mode = 2
+
+[node name="InnerStrLbl" type="Label" parent="HBoxContainer/RightSide/RightTopPanel/VBoxContainer/InnerSTR" unique_id=1486270486]
+layout_mode = 2
+
+[node name="InnerStrBtn" type="Button" parent="HBoxContainer/RightSide/RightTopPanel/VBoxContainer/InnerSTR" unique_id=913706490]
+layout_mode = 2
+
+[node name="OuterSTR" type="HBoxContainer" parent="HBoxContainer/RightSide/RightTopPanel/VBoxContainer" unique_id=1001841585]
+layout_mode = 2
+
+[node name="OuterStrLbl" type="Label" parent="HBoxContainer/RightSide/RightTopPanel/VBoxContainer/OuterSTR" unique_id=933835471]
+layout_mode = 2
+
+[node name="OuterStrBtn" type="Button" parent="HBoxContainer/RightSide/RightTopPanel/VBoxContainer/OuterSTR" unique_id=498925964]
+layout_mode = 2
+
+[node name="Toughness" type="HBoxContainer" parent="HBoxContainer/RightSide/RightTopPanel/VBoxContainer" unique_id=611055308]
+layout_mode = 2
+
+[node name="ToughnessLbl" type="Label" parent="HBoxContainer/RightSide/RightTopPanel/VBoxContainer/Toughness" unique_id=1711687442]
+layout_mode = 2
+
+[node name="ToughnessBtn" type="Button" parent="HBoxContainer/RightSide/RightTopPanel/VBoxContainer/Toughness" unique_id=676934255]
+layout_mode = 2
+
+[node name="AttackSpeed" type="HBoxContainer" parent="HBoxContainer/RightSide/RightTopPanel/VBoxContainer" unique_id=1696056613]
+layout_mode = 2
+
+[node name="ASLbl" type="Label" parent="HBoxContainer/RightSide/RightTopPanel/VBoxContainer/AttackSpeed" unique_id=622439880]
+layout_mode = 2
+
+[node name="ASBtn" type="Button" parent="HBoxContainer/RightSide/RightTopPanel/VBoxContainer/AttackSpeed" unique_id=334100376]
+layout_mode = 2
 
 [node name="RightBottomPanel" type="ScrollContainer" parent="HBoxContainer/RightSide" unique_id=1854535572]
 layout_mode = 2

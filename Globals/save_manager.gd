@@ -48,7 +48,7 @@ func hard_reset() -> void:
 		DirAccess.remove_absolute(SAVE_PATH)
 	
 	#statları fabrika ayarlarına döndür
-	Globals.total_dark_mana = 100
+	Globals.total_dark_mana = 1000
 	Globals.roll_cost = 100
 	Globals.current_floor = 1
 	Globals.enemies_defeated = 0

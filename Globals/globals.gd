@@ -3,7 +3,8 @@ extends Node
 var dark_mana_upgrades: Dictionary = {
 	"base_inner_str": 0,
 	"base_outer_str": 0,
-	"base_bamt": 0
+	"base_bamt": 0,
+	"base_as": 0
 }
 
 var suffixes = ["","K","M","B","T","Qa","Qi","Sx","Sp","Oc","No","Dc","Ud","Dd","Td"]
@@ -51,17 +52,19 @@ var hp_regen: float = 0.0
 
 #savaş gücümüzü yeniden hesaplayan motor
 func calculate_combat_stats() -> void:
-	#önce her şeyi temel hale çevir
-	inner_str = base_inner_str
-	outer_str = base_outer_str
-	bamt = base_bamt
+	# 1. ÖNCE DARK MANA YÜKSELTMELERİNİ TEMEL STATLARA EKLE
+	# Her bir seviye upgrade'i sana 5 stat puanı versin (bu çarpanı dilediğin gibi dengele)
+	inner_str = base_inner_str + (dark_mana_upgrades["base_inner_str"] * 5.0)
+	outer_str = base_outer_str + (dark_mana_upgrades["base_outer_str"] * 5.0)
+	bamt = base_bamt + (dark_mana_upgrades["base_bamt"] * 5.0)
+	
 	dark_mana_gain_multiplier = 1.0
 	total_bleed_dmg = 0.0
 	total_burn_dmg = 0.0
 	total_poison_dmg = 0.0
 	total_life_steal = 0.0
 	
-	#çantadaki aktif yetenekleri tek tek oku ve gücü arttır
+	# 2. ÇANTADAKİ YETENEKLERİN ÇARPANLARINI UYGULA
 	for skill in player_inv.equipped_skills:
 		inner_str *= skill.inner_strength_mult
 		outer_str *= skill.outer_strength_mult
@@ -72,13 +75,15 @@ func calculate_combat_stats() -> void:
 		total_poison_dmg += skill.poison_dmg_per_sec
 		total_life_steal += skill.life_steal_percent
 		
+	# 3. YENİ STATLARLA SAVAŞ GÜCÜNÜ HESAPLA
 	min_damage = 50.0 + (inner_str * 0.5)
-	attack_speed = 20.0 + (inner_str * 0.2)
-	crit_chance = clamp(inner_str * 0.5, 0.0, 100.0)
 	
+	# Dikkat: Attack Speed'i doğrudan dark mana upgrade seviyesiyle(x2.0) arttırıyoruz!
+	attack_speed = 20.0 + (inner_str * 0.2) + (dark_mana_upgrades["base_as"] * 2.0)
+	
+	crit_chance = clamp(inner_str * 0.5, 0.0, 100.0)
 	max_damage = 10.0 + (outer_str * 1.5) + min_damage
 	block_chance = clamp(outer_str * 0.5, 0.0, 75.0)
-	
 	max_hp = 100.0 + (outer_str * 5.0) + (bamt * 15.0)
 	hp_regen = bamt * 0.2
 	damage_reduction = clamp(bamt * 0.4, 0.0, 85.0)

@@ -5,7 +5,5 @@
 [resource]
 script = ExtResource("1_46s8f")
 skill_name = "Vampiric Touch"
-description = "This skill gives you %15 lifesteal."
-rarity = 1
 life_steal_percent = 15.0
 metadata/_custom_type_script = "uid://bfcnay3odbjv6"

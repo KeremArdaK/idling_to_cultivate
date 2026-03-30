@@ -107,6 +107,7 @@ func _process(delta: float) -> void:
 	update_stats_ui()
 	
 	player_entity.max_hp = Globals.max_hp
+	player_entity.speed = Globals.attack_speed
 	
 	#kamera sarsıntısı eklencek
 	if shake_strength > 0:
