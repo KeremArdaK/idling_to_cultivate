@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 Globals="*uid://cs2mrpqgbwoo6"
 SaveManager="*uid://hjxjiq3rk30h"
 GlobalNotifier="*uid://hdpanssopsq1"
+SignalManager="*uid://dj2us3k4fieyl"
 
 [display]
 

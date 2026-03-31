@@ -22,6 +22,7 @@ func save_game() -> void:
 	current_save.total_enemies_defeated = Globals.total_enemies_defeated
 	current_save.soul_fragments = Globals.soul_fragments
 	current_save.prestige_upgrades = Globals.prestige_upgrades
+	current_save.dark_mana_upgrades = Globals.dark_mana_upgrades
 	#şablonu diske yazdır
 	ResourceSaver.save(current_save, SAVE_PATH)
 	print("Başarıyla kaydedildi.")
@@ -38,6 +39,7 @@ func load_game() -> void:
 			Globals.current_floor = loaded_save.current_floor
 			Globals.player_inv.unlocked_skills = loaded_save.unlocked_skills
 			Globals.player_inv.equipped_skills = loaded_save.equipped_skills
+			Globals.dark_mana_upgrades = loaded_save.dark_mana_upgrades
 			
 			Globals.calculate_combat_stats()
 		else:
@@ -53,6 +55,7 @@ func hard_reset() -> void:
 	Globals.current_floor = 1
 	Globals.enemies_defeated = 0
 	Globals.total_enemies_defeated = 0
+	Globals.soul_fragments = 0
 	
 	#çantayı ve yetenekleri tamamen boşalt
 	Globals.player_inv.equipped_skills.clear()

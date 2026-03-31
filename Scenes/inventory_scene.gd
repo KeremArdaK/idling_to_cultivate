@@ -116,7 +116,7 @@ func _on_skill_btn_pressed(skill: PassiveSkill):
 		btn_unequip.visible = false
 
 func clear_details_panel():
-	skill_name.text = "Bir yetenek seçin"
+	skill_name.text = "Select a skill"
 	skill_rarity.text = ""
 	skill_desc.text = ""
 	btn_equip.visible = false

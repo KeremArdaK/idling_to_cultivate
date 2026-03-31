@@ -12,9 +12,6 @@ extends PanelContainer
 var base_cost: float = 50.0
 var cost_multiplier: float = 1.3
 
-func _process(delta: float) -> void:
-	update_all_ui()
-	
 func _ready() -> void:
 	update_all_ui()
 	
@@ -48,5 +45,5 @@ func update_all_ui() -> void:
 	outer_str_lbl.text = "Outer Strength"
 	toughness_btn.text = "Upgrade (" + Globals.format_number(get_cost("base_bamt")) + ")"
 	toughness_lbl.text = "Toughness"
-	as_btn.text = "Upgrade (" + Globals.format_number(get_cost("base_atk_speed")) + ")"
+	as_btn.text = "Upgrade (" + Globals.format_number(get_cost("base_as")) + ")"
 	as_lbl.text = "Attack Speed"
